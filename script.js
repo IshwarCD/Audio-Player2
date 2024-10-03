@@ -24,8 +24,6 @@ const songs = [
 ];
 
 let currentSongIndex = 0;
-let isRepeating = false;
-let isOneTimePlay = false;
 
 // Load the first song initially
 loadSong(songs[currentSongIndex]);
@@ -79,21 +77,6 @@ prevBtn.addEventListener('click', () => {
   currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
   loadSong(songs[currentSongIndex]);
   playSong();
-});
-
-// Automatically play next song
-audioPlayer.addEventListener('ended', () => {
-  if (isRepeating) {
-    loadSong(songs[currentSongIndex]);
-    playSong();
-  } else if (isOneTimePlay) {
-    pauseSong();
-    isOneTimePlay = false; // Reset after playing once
-  } else {
-    currentSongIndex = (currentSongIndex + 1) % songs.length;
-    loadSong(songs[currentSongIndex]);
-    playSong();
-  }
 });
 
 // Update progress bar and song time
@@ -171,25 +154,3 @@ audioPlayer.onplay = () => {
   audioCtx.resume();
   draw();
 };
-
-// Repeat mode
-const repeatBtn = document.createElement('button');
-repeatBtn.innerText = "Repeat";
-repeatBtn.id = "repeat-btn";
-document.querySelector('.controls').appendChild(repeatBtn);
-
-repeatBtn.addEventListener('click', () => {
-  isRepeating = !isRepeating;
-  repeatBtn.classList.toggle('active', isRepeating);
-});
-
-// One Time Play
-const oneTimePlayBtn = document.createElement('button');
-oneTimePlayBtn.innerText = "One Time Play";
-oneTimePlayBtn.id = "one-time-play-btn";
-document.querySelector('.controls').appendChild(oneTimePlayBtn);
-
-oneTimePlayBtn.addEventListener('click', () => {
-  isOneTimePlay = true;
-  oneTimePlayBtn.classList.toggle('active', isOneTimePlay);
-});
