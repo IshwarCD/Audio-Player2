@@ -20,6 +20,7 @@ body {
   width: 350px;
   padding: 20px;
   text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .player-info {
@@ -90,6 +91,7 @@ button:hover {
 .song-list {
   margin-top: 15px;
   text-align: left;
+  display: none; /* Hide by default */
 }
 
 #song-list {
@@ -124,6 +126,32 @@ button:hover {
   color: white;
 }
 
-button#dark-mode-btn.active {
-  background-color: #ffab00;
+.dark-mode #song-list li {
+  background-color: #444;
+}
+
+.dark-mode #song-list li:hover {
+  background-color: #007BFF;
+}
+
+#song-list-btn {
+  margin-top: 10px;
+  background-color: #28a745;
+}
+
+#dark-mode-btn {
+  margin-top: 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 400px) {
+  .music-player {
+    width: 90%;
+  }
+}
+
+@media (min-width: 401px) and (max-width: 600px) {
+  .music-player {
+    width: 60%;
+  }
 }
