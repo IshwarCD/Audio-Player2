@@ -17,7 +17,7 @@ body {
   background: #fff;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
+  width: 350px;
   padding: 20px;
   text-align: center;
 }
@@ -67,6 +67,10 @@ button:hover {
   background-color: #0056b3;
 }
 
+#play-btn.active {
+  background-color: #ff4444;
+}
+
 .progress-container {
   margin-bottom: 10px;
 }
@@ -81,4 +85,27 @@ button:hover {
 
 #volume-bar {
   width: 100%;
+}
+
+.lyrics {
+  margin-top: 15px;
+  text-align: left;
+}
+
+#visualizer {
+  margin-top: 15px;
+}
+
+.dark-mode {
+  background-color: #333;
+  color: white;
+}
+
+.dark-mode button {
+  background-color: #555;
+  color: white;
+}
+
+button#dark-mode-btn.active {
+  background-color: #ffab00;
 }
