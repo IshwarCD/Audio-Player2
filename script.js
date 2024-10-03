@@ -16,6 +16,10 @@ const canvas = document.getElementById('visualizer');
 const canvasCtx = canvas.getContext('2d');
 const songListBtn = document.getElementById('song-list-btn');
 
+let isRepeating = false; // For repeat mode
+let isOneTimePlay = false; // For one-time play mode
+let currentSongIndex = 0; // To keep track of the current song
+
 // Playlist of songs
 const songs = [
   { title: "Song 1", artist: "Artist 1", cover: "images/cover1.jpg", src: "songs/song1.mp3" },
@@ -23,24 +27,11 @@ const songs = [
   { title: "Song 3", artist: "Artist 3", cover: "images/cover3.jpg", src: "songs/song3.mp3" }
 ];
 
-let currentSongIndex = 0;
-let isRepeating = false;
-let isOneTimePlay = false;
-
 // Load the first song initially
 loadSong(songs[currentSongIndex]);
 
 // Populate the song list dynamically
-songs.forEach((song, index) => {
-  const li = document.createElement('li');
-  li.innerText = `${song.title} - ${song.artist}`;
-  li.addEventListener('click', () => {
-    currentSongIndex = index;
-    loadSong(songs[currentSongIndex]);
-    playSong();
-  });
-  songListElement.appendChild(li);
-});
+populateSongList();
 
 function loadSong(song) {
   songTitle.innerText = song.title;
@@ -61,28 +52,56 @@ function pauseSong() {
   playBtn.classList.remove('active');
 }
 
-playBtn.addEventListener('click', () => {
+// Event listeners for buttons
+playBtn.addEventListener('click', togglePlay);
+nextBtn.addEventListener('click', playNextSong);
+prevBtn.addEventListener('click', playPrevSong);
+
+// Automatically play next song
+audioPlayer.addEventListener('ended', handleSongEnd);
+
+// Update progress bar and song time
+audioPlayer.addEventListener('timeupdate', updateProgress);
+
+// Volume control
+volumeBar.addEventListener('input', () => {
+  audioPlayer.volume = volumeBar.value;
+});
+
+// Dark mode toggle
+darkModeBtn.addEventListener('click', toggleDarkMode);
+
+// Toggle song list visibility
+songListBtn.addEventListener('click', toggleSongList);
+
+// Audio visualizer setup
+setupAudioVisualizer();
+
+// Repeat and One Time Play buttons
+setupRepeatButton();
+setupOneTimePlayButton();
+
+function togglePlay() {
   if (audioPlayer.paused) {
     playSong();
   } else {
     pauseSong();
   }
-});
+}
 
-nextBtn.addEventListener('click', () => {
+function playNextSong() {
   currentSongIndex = (currentSongIndex + 1) % songs.length;
   loadSong(songs[currentSongIndex]);
   playSong();
-});
+}
 
-prevBtn.addEventListener('click', () => {
+function playPrevSong() {
   currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
   loadSong(songs[currentSongIndex]);
   playSong();
-});
+}
 
-// Automatically play next song
-audioPlayer.addEventListener('ended', () => {
+function handleSongEnd() {
   if (isRepeating) {
     loadSong(songs[currentSongIndex]);
     playSong();
@@ -90,14 +109,9 @@ audioPlayer.addEventListener('ended', () => {
     pauseSong();
     isOneTimePlay = false; // Reset after playing once
   } else {
-    currentSongIndex = (currentSongIndex + 1) % songs.length;
-    loadSong(songs[currentSongIndex]);
-    playSong();
+    playNextSong();
   }
-});
-
-// Update progress bar and song time
-audioPlayer.addEventListener('timeupdate', updateProgress);
+}
 
 function updateProgress() {
   const progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
@@ -112,84 +126,84 @@ function updateProgress() {
   durationEl.innerText = `${durationMinutes}:${durationSeconds < 10 ? '0' + durationSeconds : durationSeconds}`;
 }
 
-// Update song time when progress bar is changed
-progressBar.addEventListener('input', () => {
-  const newTime = (progressBar.value / 100) * audioPlayer.duration;
-  audioPlayer.currentTime = newTime;
-});
-
-// Volume control
-volumeBar.addEventListener('input', () => {
-  audioPlayer.volume = volumeBar.value;
-});
-
-// Dark mode toggle with advanced styles
-darkModeBtn.addEventListener('click', () => {
+function toggleDarkMode() {
   document.body.classList.toggle('dark-mode');
   darkModeBtn.classList.toggle('active');
-});
-
-// Toggle song list visibility
-songListBtn.addEventListener('click', () => {
-  songListContainer.style.display = songListContainer.style.display === 'none' ? 'block' : 'none';
-});
-
-// Audio visualizer using Web Audio API
-const audioCtx = new AudioContext();
-const audioSource = audioCtx.createMediaElementSource(audioPlayer);
-const analyser = audioCtx.createAnalyser();
-
-audioSource.connect(analyser);
-analyser.connect(audioCtx.destination);
-
-analyser.fftSize = 256;
-const bufferLength = analyser.frequencyBinCount;
-const dataArray = new Uint8Array(bufferLength);
-
-function draw() {
-  requestAnimationFrame(draw);
-
-  analyser.getByteFrequencyData(dataArray);
-  
-  canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
-  
-  const barWidth = (canvas.width / bufferLength) * 2.5;
-  let barHeight;
-  let x = 0;
-  
-  for (let i = 0; i < bufferLength; i++) {
-    barHeight = dataArray[i];
-    
-    canvasCtx.fillStyle = `rgb(${barHeight + 100}, 50, 50)`;
-    canvasCtx.fillRect(x, canvas.height - barHeight / 2, barWidth, barHeight / 2);
-    
-    x += barWidth + 1;
-  }
 }
 
-audioPlayer.onplay = () => {
-  audioCtx.resume();
-  draw();
-};
+function toggleSongList() {
+  songListContainer.style.display = songListContainer.style.display === 'none' ? 'block' : 'none';
+}
 
-// Repeat mode
-const repeatBtn = document.createElement('button');
-repeatBtn.innerText = "Repeat";
-repeatBtn.id = "repeat-btn";
-document.querySelector('.controls').appendChild(repeatBtn);
+function populateSongList() {
+  songs.forEach((song, index) => {
+    const li = document.createElement('li');
+    li.innerText = `${song.title} - ${song.artist}`;
+    li.addEventListener('click', () => {
+      currentSongIndex = index;
+      loadSong(songs[currentSongIndex]);
+      playSong();
+    });
+    songListElement.appendChild(li);
+  });
+}
 
-repeatBtn.addEventListener('click', () => {
-  isRepeating = !isRepeating;
-  repeatBtn.classList.toggle('active', isRepeating);
-});
+// Audio visualizer using Web Audio API
+function setupAudioVisualizer() {
+  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  const audioSource = audioCtx.createMediaElementSource(audioPlayer);
+  const analyser = audioCtx.createAnalyser();
 
-// One Time Play
-const oneTimePlayBtn = document.createElement('button');
-oneTimePlayBtn.innerText = "One Time Play";
-oneTimePlayBtn.id = "one-time-play-btn";
-document.querySelector('.controls').appendChild(oneTimePlayBtn);
+  audioSource.connect(analyser);
+  analyser.connect(audioCtx.destination);
 
-oneTimePlayBtn.addEventListener('click', () => {
-  isOneTimePlay = true;
-  oneTimePlayBtn.classList.toggle('active', isOneTimePlay);
-});
+  analyser.fftSize = 256;
+  const bufferLength = analyser.frequencyBinCount;
+  const dataArray = new Uint8Array(bufferLength);
+
+  function draw() {
+    requestAnimationFrame(draw);
+    analyser.getByteFrequencyData(dataArray);
+    
+    canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    const barWidth = (canvas.width / bufferLength) * 2.5;
+    let x = 0;
+    
+    for (let i = 0; i < bufferLength; i++) {
+      const barHeight = dataArray[i];
+      canvasCtx.fillStyle = `rgb(${barHeight + 100}, 50, 50)`;
+      canvasCtx.fillRect(x, canvas.height - barHeight / 2, barWidth, barHeight / 2);
+      x += barWidth + 1;
+    }
+  }
+
+  audioPlayer.onplay = () => {
+    audioCtx.resume();
+    draw();
+  };
+}
+
+function setupRepeatButton() {
+  const repeatBtn = document.createElement('button');
+  repeatBtn.innerText = "Repeat";
+  repeatBtn.id = "repeat-btn";
+  document.querySelector('.controls').appendChild(repeatBtn);
+
+  repeatBtn.addEventListener('click', () => {
+    isRepeating = !isRepeating;
+    repeatBtn.classList.toggle('active', isRepeating);
+  });
+}
+
+function setupOneTimePlayButton() {
+  const oneTimePlayBtn = document.createElement('button');
+  oneTimePlayBtn.innerText = "One Time Play";
+  oneTimePlayBtn.id = "one-time-play-btn";
+  document.querySelector('.controls').appendChild(oneTimePlayBtn);
+
+  oneTimePlayBtn.addEventListener('click', () => {
+    isOneTimePlay = !isOneTimePlay;
+    oneTimePlayBtn.classList.toggle('active', isOneTimePlay);
+  });
+}
