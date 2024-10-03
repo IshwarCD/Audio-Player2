@@ -2,6 +2,8 @@ const audioPlayer = document.getElementById('audioPlayer');
 const playBtn = document.getElementById('play-btn');
 const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
+const shuffleBtn = document.getElementById('shuffle-btn');
+const repeatBtn = document.getElementById('repeat-btn');
 const progressBar = document.getElementById('progress-bar');
 const volumeBar = document.getElementById('volume-bar');
 const currentTimeEl = document.getElementById('current-time');
@@ -9,6 +11,10 @@ const durationEl = document.getElementById('duration');
 const songTitle = document.getElementById('song-title');
 const artistName = document.getElementById('artist-name');
 const coverImage = document.getElementById('cover');
+const lyricsText = document.getElementById('lyrics-text');
+const darkModeBtn = document.getElementById('dark-mode-btn');
+const canvas = document.getElementById('visualizer');
+const canvasCtx = canvas.getContext('2d');
 
 // Playlist of songs
 const songs = [
@@ -18,6 +24,8 @@ const songs = [
 ];
 
 let currentSongIndex = 0;
+let isShuffle = false;
+let isRepeat = false;
 
 // Load the first song initially
 loadSong(songs[currentSongIndex]);
@@ -32,11 +40,13 @@ function loadSong(song) {
 function playSong() {
   audioPlayer.play();
   playBtn.innerText = "Pause";
+  playBtn.classList.add('active');
 }
 
 function pauseSong() {
   audioPlayer.pause();
   playBtn.innerText = "Play";
+  playBtn.classList.remove('active');
 }
 
 playBtn.addEventListener('click', () => {
@@ -48,7 +58,11 @@ playBtn.addEventListener('click', () => {
 });
 
 nextBtn.addEventListener('click', () => {
-  currentSongIndex = (currentSongIndex + 1) % songs.length;
+  if (isShuffle) {
+    currentSongIndex = Math.floor(Math.random() * songs.length);
+  } else {
+    currentSongIndex = (currentSongIndex + 1) % songs.length;
+  }
   loadSong(songs[currentSongIndex]);
   playSong();
 });
@@ -57,6 +71,26 @@ prevBtn.addEventListener('click', () => {
   currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
   loadSong(songs[currentSongIndex]);
   playSong();
+});
+
+// Shuffle and Repeat functionality
+shuffleBtn.addEventListener('click', () => {
+  isShuffle = !isShuffle;
+  shuffleBtn.classList.toggle('active');
+});
+
+repeatBtn.addEventListener('click', () => {
+  isRepeat = !isRepeat;
+  repeatBtn.classList.toggle('active');
+});
+
+// Repeat current song when ended
+audioPlayer.addEventListener('ended', () => {
+  if (isRepeat) {
+    playSong();
+  } else {
+    nextBtn.click();
+  }
 });
 
 // Update progress bar and song time
@@ -85,3 +119,63 @@ progressBar.addEventListener('input', () => {
 volumeBar.addEventListener('input', () => {
   audioPlayer.volume = volumeBar.value;
 });
+
+// Dark mode toggle
+darkModeBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  darkModeBtn.classList.toggle('active');
+});
+
+// Load and display lyrics (example lyrics data)
+const lyrics = [
+  { time: 0, text: "Starting lyrics line 1..." },
+  { time: 10, text: "Next line at 10 seconds..." },
+  { time: 20, text: "And another at 20 seconds..." }
+];
+
+audioPlayer.addEventListener('timeupdate', () => {
+  const currentTime = audioPlayer.currentTime;
+  const currentLine = lyrics.find(line => currentTime >= line.time);
+
+  if (currentLine) {
+    lyricsText.innerText = currentLine.text;
+  }
+});
+
+// Audio visualizer using Web Audio API
+const audioCtx = new AudioContext();
+const audioSource = audioCtx.createMediaElementSource(audioPlayer);
+const analyser = audioCtx.createAnalyser();
+
+audioSource.connect(analyser);
+analyser.connect(audioCtx.destination);
+
+analyser.fftSize = 256;
+const bufferLength = analyser.frequencyBinCount;
+const dataArray = new Uint8Array(bufferLength);
+
+function draw() {
+  requestAnimationFrame(draw);
+
+  analyser.getByteFrequencyData(dataArray);
+  
+  canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  const barWidth = (canvas.width / bufferLength) * 2.5;
+  let barHeight;
+  let x = 0;
+  
+  for (let i = 0; i < bufferLength; i++) {
+    barHeight = dataArray[i];
+    
+    canvasCtx.fillStyle = `rgb(${barHeight + 100}, 50, 50)`;
+    canvasCtx.fillRect(x, canvas.height - barHeight / 2, barWidth, barHeight / 2);
+    
+    x += barWidth + 1;
+  }
+}
+
+audioPlayer.onplay = () => {
+  audioCtx.resume();
+  draw();
+};
