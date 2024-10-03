@@ -2,8 +2,6 @@ const audioPlayer = document.getElementById('audioPlayer');
 const playBtn = document.getElementById('play-btn');
 const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
-const shuffleBtn = document.getElementById('shuffle-btn');
-const repeatBtn = document.getElementById('repeat-btn');
 const progressBar = document.getElementById('progress-bar');
 const volumeBar = document.getElementById('volume-bar');
 const currentTimeEl = document.getElementById('current-time');
@@ -11,8 +9,8 @@ const durationEl = document.getElementById('duration');
 const songTitle = document.getElementById('song-title');
 const artistName = document.getElementById('artist-name');
 const coverImage = document.getElementById('cover');
-const lyricsText = document.getElementById('lyrics-text');
 const darkModeBtn = document.getElementById('dark-mode-btn');
+const songListElement = document.getElementById('song-list');
 const canvas = document.getElementById('visualizer');
 const canvasCtx = canvas.getContext('2d');
 
@@ -24,11 +22,21 @@ const songs = [
 ];
 
 let currentSongIndex = 0;
-let isShuffle = false;
-let isRepeat = false;
 
 // Load the first song initially
 loadSong(songs[currentSongIndex]);
+
+// Populate the song list dynamically
+songs.forEach((song, index) => {
+  const li = document.createElement('li');
+  li.innerText = `${song.title} - ${song.artist}`;
+  li.addEventListener('click', () => {
+    currentSongIndex = index;
+    loadSong(songs[currentSongIndex]);
+    playSong();
+  });
+  songListElement.appendChild(li);
+});
 
 function loadSong(song) {
   songTitle.innerText = song.title;
@@ -58,11 +66,7 @@ playBtn.addEventListener('click', () => {
 });
 
 nextBtn.addEventListener('click', () => {
-  if (isShuffle) {
-    currentSongIndex = Math.floor(Math.random() * songs.length);
-  } else {
-    currentSongIndex = (currentSongIndex + 1) % songs.length;
-  }
+  currentSongIndex = (currentSongIndex + 1) % songs.length;
   loadSong(songs[currentSongIndex]);
   playSong();
 });
@@ -71,26 +75,6 @@ prevBtn.addEventListener('click', () => {
   currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
   loadSong(songs[currentSongIndex]);
   playSong();
-});
-
-// Shuffle and Repeat functionality
-shuffleBtn.addEventListener('click', () => {
-  isShuffle = !isShuffle;
-  shuffleBtn.classList.toggle('active');
-});
-
-repeatBtn.addEventListener('click', () => {
-  isRepeat = !isRepeat;
-  repeatBtn.classList.toggle('active');
-});
-
-// Repeat current song when ended
-audioPlayer.addEventListener('ended', () => {
-  if (isRepeat) {
-    playSong();
-  } else {
-    nextBtn.click();
-  }
 });
 
 // Update progress bar and song time
@@ -124,22 +108,6 @@ volumeBar.addEventListener('input', () => {
 darkModeBtn.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
   darkModeBtn.classList.toggle('active');
-});
-
-// Load and display lyrics (example lyrics data)
-const lyrics = [
-  { time: 0, text: "Starting lyrics line 1..." },
-  { time: 10, text: "Next line at 10 seconds..." },
-  { time: 20, text: "And another at 20 seconds..." }
-];
-
-audioPlayer.addEventListener('timeupdate', () => {
-  const currentTime = audioPlayer.currentTime;
-  const currentLine = lyrics.find(line => currentTime >= line.time);
-
-  if (currentLine) {
-    lyricsText.innerText = currentLine.text;
-  }
 });
 
 // Audio visualizer using Web Audio API
