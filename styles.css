@@ -41,13 +41,13 @@ body {
 }
 
 #song-title {
-  font-size: 18px;
+  font-size: 20px; /* Increase title size */
   margin-bottom: 5px;
   color: #fff; /* Light text color */
 }
 
 #artist-name {
-  font-size: 14px;
+  font-size: 16px; /* Slightly larger artist name */
   color: #bbb; /* Slightly lighter text for artist name */
 }
 
@@ -63,6 +63,7 @@ button {
   color: white;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease; /* Button transition */
 }
 
 button:hover {
@@ -78,7 +79,21 @@ button:hover {
 }
 
 #progress-bar {
-  width: 100%;
+  -webkit-appearance: none; /* Removes default styling */
+  appearance: none; /* Removes default styling */
+  height: 8px; /* Height of the progress bar */
+  background: #444; /* Background of the progress bar */
+  border-radius: 5px; /* Round edges */
+}
+
+#progress-bar::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Removes default thumb styling */
+  appearance: none; /* Removes default thumb styling */
+  width: 16px; /* Width of the thumb */
+  height: 16px; /* Height of the thumb */
+  background: #007BFF; /* Thumb color */
+  border-radius: 50%; /* Round thumb */
+  cursor: pointer; /* Pointer on hover */
 }
 
 .volume-control {
@@ -106,11 +121,14 @@ button:hover {
   margin-bottom: 5px;
   background-color: #444; /* Dark background for song list items */
   border-radius: 5px;
+  border: 1px solid transparent; /* Transparent border */
+  transition: border 0.3s; /* Smooth transition */
 }
 
 #song-list li:hover {
   background-color: #007BFF; /* Highlight color on hover */
   color: white; /* White text on hover */
+  border: 1px solid #007BFF; /* Border on hover */
 }
 
 #visualizer {
