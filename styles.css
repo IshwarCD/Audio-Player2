@@ -100,6 +100,10 @@ button:hover {
   margin-top: 15px;
 }
 
+.volume-control label {
+  color: #fff; /* Ensure volume label is visible in dark mode */
+}
+
 #volume-bar {
   width: 100%;
 }
