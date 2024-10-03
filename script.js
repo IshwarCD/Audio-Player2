@@ -31,7 +31,16 @@ const songs = [
 loadSong(songs[currentSongIndex]);
 
 // Populate the song list dynamically
-populateSongList();
+songs.forEach((song, index) => {
+  const li = document.createElement('li');
+  li.innerText = `${song.title} - ${song.artist}`;
+  li.addEventListener('click', () => {
+    currentSongIndex = index;
+    loadSong(songs[currentSongIndex]);
+    playSong();
+  });
+  songListElement.appendChild(li);
+});
 
 function loadSong(song) {
   songTitle.innerText = song.title;
@@ -52,66 +61,30 @@ function pauseSong() {
   playBtn.classList.remove('active');
 }
 
-// Event listeners for buttons
-playBtn.addEventListener('click', togglePlay);
-nextBtn.addEventListener('click', playNextSong);
-prevBtn.addEventListener('click', playPrevSong);
-
-// Automatically play next song
-audioPlayer.addEventListener('ended', handleSongEnd);
-
-// Update progress bar and song time
-audioPlayer.addEventListener('timeupdate', updateProgress);
-
-// Volume control
-volumeBar.addEventListener('input', () => {
-  audioPlayer.volume = volumeBar.value;
-});
-
-// Dark mode toggle
-darkModeBtn.addEventListener('click', toggleDarkMode);
-
-// Toggle song list visibility
-songListBtn.addEventListener('click', toggleSongList);
-
-// Audio visualizer setup
-setupAudioVisualizer();
-
-// Repeat and One Time Play buttons
-setupRepeatButton();
-setupOneTimePlayButton();
-
-function togglePlay() {
+// Play/Pause Button
+playBtn.addEventListener('click', () => {
   if (audioPlayer.paused) {
     playSong();
   } else {
     pauseSong();
   }
-}
+});
 
-function playNextSong() {
+// Next and Previous Song Buttons
+nextBtn.addEventListener('click', () => {
   currentSongIndex = (currentSongIndex + 1) % songs.length;
   loadSong(songs[currentSongIndex]);
   playSong();
-}
+});
 
-function playPrevSong() {
+prevBtn.addEventListener('click', () => {
   currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
   loadSong(songs[currentSongIndex]);
   playSong();
-}
+});
 
-function handleSongEnd() {
-  if (isRepeating) {
-    loadSong(songs[currentSongIndex]);
-    playSong();
-  } else if (isOneTimePlay) {
-    pauseSong();
-    isOneTimePlay = false; // Reset after playing once
-  } else {
-    playNextSong();
-  }
-}
+// Update progress bar and song time
+audioPlayer.addEventListener('timeupdate', updateProgress);
 
 function updateProgress() {
   const progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
@@ -126,78 +99,107 @@ function updateProgress() {
   durationEl.innerText = `${durationMinutes}:${durationSeconds < 10 ? '0' + durationSeconds : durationSeconds}`;
 }
 
-function toggleDarkMode() {
+// Update song time when progress bar is changed
+progressBar.addEventListener('input', () => {
+  const newTime = (progressBar.value / 100) * audioPlayer.duration;
+  audioPlayer.currentTime = newTime;
+});
+
+// Volume control
+volumeBar.addEventListener('input', () => {
+  audioPlayer.volume = volumeBar.value;
+});
+
+// Dark mode toggle
+darkModeBtn.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
   darkModeBtn.classList.toggle('active');
-}
+});
 
-function toggleSongList() {
+// Toggle song list visibility
+songListBtn.addEventListener('click', () => {
   songListContainer.style.display = songListContainer.style.display === 'none' ? 'block' : 'none';
-}
-
-function populateSongList() {
-  songs.forEach((song, index) => {
-    const li = document.createElement('li');
-    li.innerText = `${song.title} - ${song.artist}`;
-    li.addEventListener('click', () => {
-      currentSongIndex = index;
-      loadSong(songs[currentSongIndex]);
-      playSong();
-    });
-    songListElement.appendChild(li);
-  });
-}
+});
 
 // Audio visualizer using Web Audio API
-function setupAudioVisualizer() {
-  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  const audioSource = audioCtx.createMediaElementSource(audioPlayer);
-  const analyser = audioCtx.createAnalyser();
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+const audioSource = audioCtx.createMediaElementSource(audioPlayer);
+const analyser = audioCtx.createAnalyser();
 
-  audioSource.connect(analyser);
-  analyser.connect(audioCtx.destination);
+audioSource.connect(analyser);
+analyser.connect(audioCtx.destination);
 
-  analyser.fftSize = 256;
-  const bufferLength = analyser.frequencyBinCount;
-  const dataArray = new Uint8Array(bufferLength);
+analyser.fftSize = 256;
+const bufferLength = analyser.frequencyBinCount;
+const dataArray = new Uint8Array(bufferLength);
 
-  function draw() {
-    requestAnimationFrame(draw);
-    analyser.getByteFrequencyData(dataArray);
+function draw() {
+  requestAnimationFrame(draw);
+
+  analyser.getByteFrequencyData(dataArray);
+  
+  canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  const barWidth = (canvas.width / bufferLength) * 2.5;
+  let barHeight;
+  let x = 0;
+  
+  for (let i = 0; i < bufferLength; i++) {
+    barHeight = dataArray[i];
     
-    canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+    canvasCtx.fillStyle = `rgb(${barHeight + 100}, 50, 50)`;
+    canvasCtx.fillRect(x, canvas.height - barHeight / 2, barWidth, barHeight / 2);
     
-    const barWidth = (canvas.width / bufferLength) * 2.5;
-    let x = 0;
-    
-    for (let i = 0; i < bufferLength; i++) {
-      const barHeight = dataArray[i];
-      canvasCtx.fillStyle = `rgb(${barHeight + 100}, 50, 50)`;
-      canvasCtx.fillRect(x, canvas.height - barHeight / 2, barWidth, barHeight / 2);
-      x += barWidth + 1;
-    }
+    x += barWidth + 1;
   }
-
-  audioPlayer.onplay = () => {
-    audioCtx.resume();
-    draw();
-  };
 }
+
+audioPlayer.onplay = () => {
+  audioCtx.resume();
+  draw();
+};
+
+// Repeat and One Time Play buttons setup
+setupRepeatButton();
+setupOneTimePlayButton();
 
 function setupRepeatButton() {
   const repeatBtn = document.getElementById('repeat-btn');
+
   repeatBtn.addEventListener('click', () => {
-    isRepeating = !isRepeating; // Toggle repeat mode
+    isRepeating = !isRepeating;
     repeatBtn.classList.toggle('active', isRepeating);
-    repeatBtn.innerText = isRepeating ? "Repeat On" : "Repeat Off"; // Update button text
+    repeatBtn.innerText = isRepeating ? "Repeat: On" : "Repeat: Off"; // Update button text
   });
 }
 
 function setupOneTimePlayButton() {
   const oneTimePlayBtn = document.getElementById('one-time-play-btn');
+
   oneTimePlayBtn.addEventListener('click', () => {
-    isOneTimePlay = !isOneTimePlay; // Toggle one-time play mode
+    isOneTimePlay = !isOneTimePlay;
     oneTimePlayBtn.classList.toggle('active', isOneTimePlay);
-    oneTimePlayBtn.innerText = isOneTimePlay ? "One Time Play On" : "One Time Play Off"; // Update button text
+    oneTimePlayBtn.innerText = isOneTimePlay ? "One Time Play: On" : "One Time Play: Off"; // Update button text
   });
+}
+
+// Automatically play next song or handle repeat/one-time play
+audioPlayer.addEventListener('ended', handleSongEnd);
+
+function handleSongEnd() {
+  if (isRepeating) {
+    loadSong(songs[currentSongIndex]);
+    playSong();
+  } else if (isOneTimePlay) {
+    pauseSong();
+    isOneTimePlay = false; // Reset after playing once
+  } else {
+    playNextSong();
+  }
+}
+
+function playNextSong() {
+  currentSongIndex = (currentSongIndex + 1) % songs.length;
+  loadSong(songs[currentSongIndex]);
+  playSong();
 }
