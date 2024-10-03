@@ -59,18 +59,18 @@ button {
   padding: 10px 15px;
   margin: 0 5px;
   border: none;
-  background-color: #007BFF;
+  background-color: #007BFF; /* Primary button color */
   color: white;
   border-radius: 5px;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #0056b3; /* Darker shade on hover */
 }
 
 #play-btn.active {
-  background-color: #ff4444;
+  background-color: #ff4444; /* Active play button color */
 }
 
 .progress-container {
@@ -109,8 +109,8 @@ button:hover {
 }
 
 #song-list li:hover {
-  background-color: #007BFF;
-  color: white;
+  background-color: #007BFF; /* Highlight color on hover */
+  color: white; /* White text on hover */
 }
 
 #visualizer {
@@ -150,7 +150,7 @@ button:hover {
 
 #song-list-btn {
   margin-top: 10px;
-  background-color: #28a745;
+  background-color: #28a745; /* Green background for song list button */
 }
 
 #dark-mode-btn {
@@ -160,12 +160,12 @@ button:hover {
 /* Responsive Styles */
 @media (max-width: 400px) {
   .music-player {
-    width: 90%;
+    width: 90%; /* Make the player wider on small screens */
   }
 }
 
 @media (min-width: 401px) and (max-width: 600px) {
   .music-player {
-    width: 60%;
+    width: 60%; /* Moderate width for medium screens */
   }
 }
