@@ -11,8 +11,10 @@ const artistName = document.getElementById('artist-name');
 const coverImage = document.getElementById('cover');
 const darkModeBtn = document.getElementById('dark-mode-btn');
 const songListElement = document.getElementById('song-list');
+const songListContainer = document.getElementById('song-list-container');
 const canvas = document.getElementById('visualizer');
 const canvasCtx = canvas.getContext('2d');
+const songListBtn = document.getElementById('song-list-btn');
 
 // Playlist of songs
 const songs = [
@@ -104,10 +106,15 @@ volumeBar.addEventListener('input', () => {
   audioPlayer.volume = volumeBar.value;
 });
 
-// Dark mode toggle
+// Dark mode toggle with advanced styles
 darkModeBtn.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
   darkModeBtn.classList.toggle('active');
+});
+
+// Toggle song list visibility
+songListBtn.addEventListener('click', () => {
+  songListContainer.style.display = songListContainer.style.display === 'none' ? 'block' : 'none';
 });
 
 // Audio visualizer using Web Audio API
