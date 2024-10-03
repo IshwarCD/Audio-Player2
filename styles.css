@@ -87,9 +87,27 @@ button:hover {
   width: 100%;
 }
 
-.lyrics {
+.song-list {
   margin-top: 15px;
   text-align: left;
+}
+
+#song-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+#song-list li {
+  cursor: pointer;
+  padding: 10px;
+  margin-bottom: 5px;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+}
+
+#song-list li:hover {
+  background-color: #007BFF;
+  color: white;
 }
 
 #visualizer {
