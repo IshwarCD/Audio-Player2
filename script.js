@@ -185,25 +185,19 @@ function setupAudioVisualizer() {
 }
 
 function setupRepeatButton() {
-  const repeatBtn = document.createElement('button');
-  repeatBtn.innerText = "Repeat";
-  repeatBtn.id = "repeat-btn";
-  document.querySelector('.controls').appendChild(repeatBtn);
-
+  const repeatBtn = document.getElementById('repeat-btn');
   repeatBtn.addEventListener('click', () => {
-    isRepeating = !isRepeating;
+    isRepeating = !isRepeating; // Toggle repeat mode
     repeatBtn.classList.toggle('active', isRepeating);
+    repeatBtn.innerText = isRepeating ? "Repeat On" : "Repeat Off"; // Update button text
   });
 }
 
 function setupOneTimePlayButton() {
-  const oneTimePlayBtn = document.createElement('button');
-  oneTimePlayBtn.innerText = "One Time Play";
-  oneTimePlayBtn.id = "one-time-play-btn";
-  document.querySelector('.controls').appendChild(oneTimePlayBtn);
-
+  const oneTimePlayBtn = document.getElementById('one-time-play-btn');
   oneTimePlayBtn.addEventListener('click', () => {
-    isOneTimePlay = !isOneTimePlay;
+    isOneTimePlay = !isOneTimePlay; // Toggle one-time play mode
     oneTimePlayBtn.classList.toggle('active', isOneTimePlay);
+    oneTimePlayBtn.innerText = isOneTimePlay ? "One Time Play On" : "One Time Play Off"; // Update button text
   });
 }
