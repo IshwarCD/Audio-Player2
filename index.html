@@ -3,53 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scheduled Song Player</title>
+  <title>Music Player</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Scheduled Song Player</h1>
-  <p>Click the button below to enable the song to play at 5:00 PM (Asia/Kolkata time).</p>
-  
-  <button id="enableAudio" onclick="enableAudio()">Enable Audio</button>
-  
-  <audio id="audioPlayer" style="display:none;">
-    <source src="https://raw.githubusercontent.com/thelxcode/AudioPlayer/main/music/Hare_Hare__Hum_to_dil_se_hare__-_Lofi_Song_%5BSlowed___Reverb%5D___ShariqueKhan___Nic_Lofi(256k).mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-  
-  <script>
-    let audioEnabled = false;
-    
-    function enableAudio() {
-      const audioPlayer = document.getElementById('audioPlayer');
-      audioPlayer.style.display = 'block';
-      audioPlayer.load(); // Prepare the audio
-      audioEnabled = true;
-      alert("Audio enabled! It will play automatically at 5:00 PM IST.");
-      document.getElementById('enableAudio').style.display = 'none'; // Hide the button after enabling
-    }
-    
-    function playSongAtFivePM() {
-      const audioPlayer = document.getElementById('audioPlayer');
-      
-      // Check if the user enabled audio
-      if (!audioEnabled) return;
-      
-      // Set the time zone to Asia/Kolkata
-      const currentTime = new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" });
-      const now = new Date(currentTime);
-      
-      // Get the hours and minutes
-      const hours = now.getHours();
-      const minutes = now.getMinutes();
-      
-      // Check if it's 5:00 PM in Asia/Kolkata time
-      if (hours === 21 && minutes === 58) {
-        audioPlayer.play();
-      }
-    }
 
-    // Check the time every minute
-    setInterval(playSongAtFivePM, 60000);
-  </script>
+  <div class="music-player">
+    <div class="player-info">
+      <img id="cover" src="cover.jpg" alt="Album Cover">
+      <div class="song-details">
+        <h2 id="song-title">Song Title</h2>
+        <h3 id="artist-name">Artist Name</h3>
+      </div>
+    </div>
+    
+    <audio id="audioPlayer" src="songs/song1.mp3"></audio>
+    
+    <div class="controls">
+      <button id="prev-btn">Prev</button>
+      <button id="play-btn">Play</button>
+      <button id="next-btn">Next</button>
+    </div>
+    
+    <div class="progress-container">
+      <input type="range" id="progress-bar" value="0">
+      <span id="current-time">0:00</span> / 
+      <span id="duration">0:00</span>
+    </div>
+    
+    <div class="volume-control">
+      <label for="volume-bar">Volume</label>
+      <input type="range" id="volume-bar" min="0" max="1" step="0.1" value="1">
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
