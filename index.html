@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Advanced Music Player</title>
+  <title>Simple Music Player</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -15,15 +15,13 @@
         <h3 id="artist-name">Artist Name</h3>
       </div>
     </div>
-    
+
     <audio id="audioPlayer" src="songs/song1.mp3"></audio>
     
     <div class="controls">
       <button id="prev-btn">Prev</button>
       <button id="play-btn">Play</button>
       <button id="next-btn">Next</button>
-      <button id="shuffle-btn">Shuffle</button>
-      <button id="repeat-btn">Repeat</button>
     </div>
     
     <div class="progress-container">
@@ -37,9 +35,10 @@
       <input type="range" id="volume-bar" min="0" max="1" step="0.1" value="1">
     </div>
 
-    <div class="lyrics">
-      <h3>Lyrics</h3>
-      <p id="lyrics-text">Loading lyrics...</p>
+    <!-- Song List Section -->
+    <div class="song-list">
+      <h3>Song List</h3>
+      <ul id="song-list"></ul>
     </div>
 
     <canvas id="visualizer" width="300" height="100"></canvas>
