@@ -1,119 +1,195 @@
-const audioPlayer = new Audio();
+const audioPlayer = document.getElementById('audioPlayer');
 const playBtn = document.getElementById('play-btn');
 const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
-const repeatBtn = document.getElementById('repeat-btn');
-const oneTimePlayBtn = document.getElementById('one-time-play-btn');
 const progressBar = document.getElementById('progress-bar');
 const volumeBar = document.getElementById('volume-bar');
-const currentTimeLabel = document.getElementById('current-time');
-const durationLabel = document.getElementById('duration');
-const songListContainer = document.querySelector('.song-list');
-const songListItems = document.querySelectorAll('#song-list li');
+const currentTimeEl = document.getElementById('current-time');
+const durationEl = document.getElementById('duration');
 const songTitle = document.getElementById('song-title');
 const artistName = document.getElementById('artist-name');
+const coverImage = document.getElementById('cover');
+const darkModeBtn = document.getElementById('dark-mode-btn');
+const songListElement = document.getElementById('song-list');
+const songListContainer = document.getElementById('song-list-container');
+const canvas = document.getElementById('visualizer');
+const canvasCtx = canvas.getContext('2d');
+const songListBtn = document.getElementById('song-list-btn');
+
+// Playlist of songs
+const songs = [
+  { title: "Song 1", artist: "Artist 1", cover: "images/cover1.jpg", src: "songs/song1.mp3" },
+  { title: "Song 2", artist: "Artist 2", cover: "images/cover2.jpg", src: "songs/song2.mp3" },
+  { title: "Song 3", artist: "Artist 3", cover: "images/cover3.jpg", src: "songs/song3.mp3" }
+];
 
 let currentSongIndex = 0;
-let isRepeatMode = false;
-let isOneTimePlayMode = false;
+let isRepeating = false;
+let isOneTimePlay = false;
 
-// Load the first song
-loadSong(currentSongIndex);
+// Load the first song initially
+loadSong(songs[currentSongIndex]);
 
-// Load song function
-function loadSong(index) {
-    const song = songListItems[index];
-    audioPlayer.src = song.getAttribute('data-src');
-    songTitle.innerText = song.innerText;
-    artistName.innerText = "Artist Name"; // Update as per your data
+// Populate the song list dynamically
+songs.forEach((song, index) => {
+  const li = document.createElement('li');
+  li.innerText = `${song.title} - ${song.artist}`;
+  li.addEventListener('click', () => {
+    currentSongIndex = index;
+    loadSong(songs[currentSongIndex]);
+    playSong();
+  });
+  songListElement.appendChild(li);
+});
+
+function loadSong(song) {
+  songTitle.innerText = song.title;
+  artistName.innerText = song.artist;
+  coverImage.src = song.cover;
+  audioPlayer.src = song.src;
 }
 
-// Play or pause song
+function playSong() {
+  audioPlayer.play();
+  playBtn.innerText = "Pause";
+  playBtn.classList.add('active');
+}
+
+function pauseSong() {
+  audioPlayer.pause();
+  playBtn.innerText = "Play";
+  playBtn.classList.remove('active');
+}
+
 playBtn.addEventListener('click', () => {
-    if (audioPlayer.paused) {
-        audioPlayer.play();
-        playBtn.innerText = 'Pause';
-    } else {
-        audioPlayer.pause();
-        playBtn.innerText = 'Play';
-    }
+  if (audioPlayer.paused) {
+    playSong();
+  } else {
+    pauseSong();
+  }
 });
 
-// Next song function
 nextBtn.addEventListener('click', () => {
-    currentSongIndex = (currentSongIndex + 1) % songListItems.length;
-    loadSong(currentSongIndex);
-    audioPlayer.play();
-    playBtn.innerText = 'Pause';
+  currentSongIndex = (currentSongIndex + 1) % songs.length;
+  loadSong(songs[currentSongIndex]);
+  playSong();
 });
 
-// Previous song function
 prevBtn.addEventListener('click', () => {
-    currentSongIndex = (currentSongIndex - 1 + songListItems.length) % songListItems.length;
-    loadSong(currentSongIndex);
-    audioPlayer.play();
-    playBtn.innerText = 'Pause';
+  currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+  loadSong(songs[currentSongIndex]);
+  playSong();
 });
 
-// Audio ended event
+// Automatically play next song
 audioPlayer.addEventListener('ended', () => {
-    if (isRepeatMode) {
-        audioPlayer.currentTime = 0; // Repeat current song
-        audioPlayer.play();
-    } else {
-        currentSongIndex = (currentSongIndex + 1) % songListItems.length;
-        loadSong(currentSongIndex);
-        audioPlayer.play();
-    }
+  if (isRepeating) {
+    loadSong(songs[currentSongIndex]);
+    playSong();
+  } else if (isOneTimePlay) {
+    pauseSong();
+    isOneTimePlay = false; // Reset after playing once
+  } else {
+    currentSongIndex = (currentSongIndex + 1) % songs.length;
+    loadSong(songs[currentSongIndex]);
+    playSong();
+  }
 });
 
-// Repeat mode toggle
-repeatBtn.addEventListener('click', () => {
-    isRepeatMode = !isRepeatMode;
-    repeatBtn.innerText = isRepeatMode ? 'Repeat Mode: ON' : 'Repeat Mode: OFF';
-});
+// Update progress bar and song time
+audioPlayer.addEventListener('timeupdate', updateProgress);
 
-// One-Time Play toggle
-oneTimePlayBtn.addEventListener('click', () => {
-    isOneTimePlayMode = !isOneTimePlayMode;
-    oneTimePlayBtn.innerText = isOneTimePlayMode ? 'One-Time Play: ON' : 'One-Time Play: OFF';
-    audioPlayer.loop = isRepeatMode; // Set loop based on repeat mode
-});
+function updateProgress() {
+  const progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+  progressBar.value = progressPercent;
 
-// Update progress bar
-audioPlayer.addEventListener('timeupdate', () => {
-    const progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-    progressBar.value = progressPercent;
-    currentTimeLabel.innerText = formatTime(audioPlayer.currentTime);
-    durationLabel.innerText = formatTime(audioPlayer.duration);
-});
+  const currentMinutes = Math.floor(audioPlayer.currentTime / 60);
+  const currentSeconds = Math.floor(audioPlayer.currentTime % 60);
+  const durationMinutes = Math.floor(audioPlayer.duration / 60);
+  const durationSeconds = Math.floor(audioPlayer.duration % 60);
 
-// Format time
-function formatTime(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60);
-    return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+  currentTimeEl.innerText = `${currentMinutes}:${currentSeconds < 10 ? '0' + currentSeconds : currentSeconds}`;
+  durationEl.innerText = `${durationMinutes}:${durationSeconds < 10 ? '0' + durationSeconds : durationSeconds}`;
 }
 
-// Change progress on input
+// Update song time when progress bar is changed
 progressBar.addEventListener('input', () => {
-    const newTime = (progressBar.value / 100) * audioPlayer.duration;
-    audioPlayer.currentTime = newTime;
+  const newTime = (progressBar.value / 100) * audioPlayer.duration;
+  audioPlayer.currentTime = newTime;
 });
 
 // Volume control
 volumeBar.addEventListener('input', () => {
-    audioPlayer.volume = volumeBar.value / 100;
+  audioPlayer.volume = volumeBar.value;
+});
+
+// Dark mode toggle with advanced styles
+darkModeBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  darkModeBtn.classList.toggle('active');
 });
 
 // Toggle song list visibility
-document.getElementById('song-list-btn').addEventListener('click', () => {
-    if (songListContainer.style.display === 'none' || songListContainer.style.display === '') {
-        songListContainer.style.display = 'block';
-    } else {
-        songListContainer.style.display = 'none';
-    }
+songListBtn.addEventListener('click', () => {
+  songListContainer.style.display = songListContainer.style.display === 'none' ? 'block' : 'none';
 });
 
-// Load the first song initially
-loadSong(currentSongIndex);
+// Audio visualizer using Web Audio API
+const audioCtx = new AudioContext();
+const audioSource = audioCtx.createMediaElementSource(audioPlayer);
+const analyser = audioCtx.createAnalyser();
+
+audioSource.connect(analyser);
+analyser.connect(audioCtx.destination);
+
+analyser.fftSize = 256;
+const bufferLength = analyser.frequencyBinCount;
+const dataArray = new Uint8Array(bufferLength);
+
+function draw() {
+  requestAnimationFrame(draw);
+
+  analyser.getByteFrequencyData(dataArray);
+  
+  canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  const barWidth = (canvas.width / bufferLength) * 2.5;
+  let barHeight;
+  let x = 0;
+  
+  for (let i = 0; i < bufferLength; i++) {
+    barHeight = dataArray[i];
+    
+    canvasCtx.fillStyle = `rgb(${barHeight + 100}, 50, 50)`;
+    canvasCtx.fillRect(x, canvas.height - barHeight / 2, barWidth, barHeight / 2);
+    
+    x += barWidth + 1;
+  }
+}
+
+audioPlayer.onplay = () => {
+  audioCtx.resume();
+  draw();
+};
+
+// Repeat mode
+const repeatBtn = document.createElement('button');
+repeatBtn.innerText = "Repeat";
+repeatBtn.id = "repeat-btn";
+document.querySelector('.controls').appendChild(repeatBtn);
+
+repeatBtn.addEventListener('click', () => {
+  isRepeating = !isRepeating;
+  repeatBtn.classList.toggle('active', isRepeating);
+});
+
+// One Time Play
+const oneTimePlayBtn = document.createElement('button');
+oneTimePlayBtn.innerText = "One Time Play";
+oneTimePlayBtn.id = "one-time-play-btn";
+document.querySelector('.controls').appendChild(oneTimePlayBtn);
+
+oneTimePlayBtn.addEventListener('click', () => {
+  isOneTimePlay = true;
+  oneTimePlayBtn.classList.toggle('active', isOneTimePlay);
+});
