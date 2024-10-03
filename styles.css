@@ -14,7 +14,7 @@ body {
 }
 
 .music-player {
-  background: #2b2b2b; /* Darker background for the player */
+  background: #fff; /* Light background for the player in light mode */
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Enhanced shadow for depth */
   width: 350px;
@@ -43,12 +43,12 @@ body {
 #song-title {
   font-size: 20px; /* Increase title size */
   margin-bottom: 5px;
-  color: #fff; /* Light text color */
+  color: #333; /* Dark text color */
 }
 
 #artist-name {
   font-size: 16px; /* Slightly larger artist name */
-  color: #bbb; /* Slightly lighter text for artist name */
+  color: #666; /* Slightly lighter text for artist name */
 }
 
 .controls {
@@ -82,7 +82,7 @@ button:hover {
   -webkit-appearance: none; /* Removes default styling */
   appearance: none; /* Removes default styling */
   height: 8px; /* Height of the progress bar */
-  background: #444; /* Background of the progress bar */
+  background: #ddd; /* Light background of the progress bar */
   border-radius: 5px; /* Round edges */
 }
 
@@ -101,7 +101,7 @@ button:hover {
 }
 
 .volume-control label {
-  color: #fff; /* Ensure volume label is visible in dark mode */
+  color: #333; /* Ensure volume label is visible in light mode */
 }
 
 #volume-bar {
@@ -123,7 +123,7 @@ button:hover {
   cursor: pointer;
   padding: 10px;
   margin-bottom: 5px;
-  background-color: #444; /* Dark background for song list items */
+  background-color: #f5f5f5; /* Light background for song list items */
   border-radius: 5px;
   border: 1px solid transparent; /* Transparent border */
   transition: border 0.3s; /* Smooth transition */
