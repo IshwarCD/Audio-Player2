@@ -85,7 +85,7 @@ h2 {
 }
 
 .player-info {
-  position: relative; /* Set the parent to relative for absolute positioning of children */
+  position: relative; /* Maintain relative positioning for absolute children */
   display: flex; /* Use flex to align items */
   align-items: center; /* Center items vertically */
 }
@@ -94,23 +94,21 @@ h2 {
   width: 70px; /* Set the width of the cover image */
   height: 70px; /* Set the height of the cover image */
   border-radius: 10px; /* Round the edges of the image */
-  margin-right: 15px; /* Space between the image and text */
+  margin-right: 20px; /* Increase space between image and text */
 }
 
 .song-details {
-  position: absolute; /* Position relative to the player-info */
-  top: 50%; /* Center vertically */
-  left: 50%; /* Center horizontally */
-  transform: translate(-50%, -50%); /* Adjust for element's own size */
+  position: relative; /* Remove absolute positioning */
   text-align: center; /* Center the text */
   color: white; /* Set text color for contrast */
   z-index: 1; /* Ensure text is above the cover */
-  pointer-events: none; /* Prevent pointer events on the text */
   max-width: 150px; /* Set a max-width for the text area */
   white-space: nowrap; /* Prevent wrapping */
   overflow: hidden; /* Hide overflow text */
   text-overflow: ellipsis; /* Show ellipsis for overflowed text */
+  margin-left: 10px; /* Add some margin to the left for spacing */
 }
+
 
 #song-title {
   margin: 0; /* Remove default margin */
