@@ -13,61 +13,71 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  overflow: hidden; /* Prevent body overflow */
 }
 
 .container {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 3rem;
-    border-radius: 20px;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
-    text-align: center;
-    max-width: 500px; /* Limit the width so it doesn't stretch too wide */
-    width: 100%; /* Ensure it adapts to screen size */
-    margin: 0 auto; /* Center the container horizontally */
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  max-width: 500px; /* Limit the width so it doesn't stretch too wide */
+  width: 100%; /* Ensure it adapts to screen size */
+  margin: 0 auto; /* Center the container horizontally */
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 80vh; /* Set max height to allow for scrolling */
 }
 
-/* Countdown Styles */
 .countdown-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 2rem;
-    margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 2rem;
+  margin-top: 1rem;
 }
 
-.countdown-box {
-    background-color: rgba(255, 255, 255, 0.15);
-    padding: 1rem 2rem;
-    border-radius: 10px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-    min-width: 120px;
-    transition: transform 0.3s ease;
+h2 {
+  font-size: 3rem;
+  margin-top: -5rem;
 }
 
-.countdown-box:hover {
-    transform: scale(1.05);
+.big-text {
+  font-size: 6rem;
+  line-height: 1;
+  margin: 0;
+  transition: all 0.3s ease;
 }
 
-/* Music Player Styles */
+.countdown-el {
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  min-width: 120px;
+  transition: transform 0.3s ease;
+}
+
+.countdown-el:hover {
+  transform: scale(1.05);
+}
+
+.countdown-el span {
+  font-size: 1.5rem;
+  display: block;
+  margin-top: 0.5rem;
+}
+
 .music-player {
-    background: #fff; /* Light background for the player in light mode */
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Enhanced shadow for depth */
-    width: 100%; /* Ensure it adapts to screen size */
-    max-width: 500px; /* Limit the width for larger screens */
-    padding: 20px;
-    text-align: center;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    margin-top: 2rem; /* Add space between countdown and music player */
+  background: #fff; /* Light background for the player in light mode */
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Enhanced shadow for depth */
+  width: 350px;
+  padding: 20px;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
-
-/* Scrollable Styles for Smaller Screens */
-.container {
-    overflow-y: auto; /* Enable vertical scrolling */
-    max-height: 90vh; /* Set a maximum height for the container */
-}
-
-/* Maintain other existing styles */
 
 .player-info {
   display: flex;
@@ -239,27 +249,26 @@ button:hover {
 }
 
 @media screen and (max-width: 800px) {
-    h2 {
-        font-size: 2rem;
-    }
+  h2 {
+    font-size: 2rem;
+  }
 
-    .big-text {
-        font-size: 2.5rem;
-        line-height: 1;
-        margin: 0;
-    }
+  .big-text {
+    font-size: 2.5rem;
+    line-height: 1;
+    margin: 0;
+  }
 
-    .countdown-el {
-        min-width: 80px;
-        padding: 0.5rem 1rem;
-    }
+  .countdown-el {
+    min-width: 80px;
+    padding: 0.5rem 1rem;
+  }
 
-    .countdown-el span {
-        font-size: 1rem;
-    }
+  .countdown-el span {
+    font-size: 1rem;
+  }
 
-    .container {
-        padding: 2rem 1rem; /* Reduce padding on smaller screens */
-    }
+  .container {
+    padding: 2rem 1rem; /* Reduce padding on smaller screens */
+  }
 }
-
