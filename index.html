@@ -1,80 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Advanced Music Player</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Music Player</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <h2>Ishwar</h2>
-        <div class="countdown-container">
-            <div class="countdown-el days-c">
-                <p class="big-text" id="days">0</p>
-                <span>Days</span>
-            </div>
-            <div class="countdown-el hours-c">
-                <p class="big-text" id="hours">0</p>
-                <span>Hours</span>
-            </div>
-            <div class="countdown-el mins-c">
-                <p class="big-text" id="mins">0</p>
-                <span>Mins</span>
-            </div>
-            <div class="countdown-el sec-c">
-                <p class="big-text" id="sec">0</p>
-                <span>Seconds</span>
+        
+        <!-- Countdown Section -->
+        <div id="countdown">
+            <div class="countdown-container">
+                <div class="countdown-el days-c countdown-box">
+                    <p class="big-text" id="days">0</p>
+                    <span>Days</span>
+                </div>
+                <div class="countdown-el hours-c countdown-box">
+                    <p class="big-text" id="hours">0</p>
+                    <span>Hours</span>
+                </div>
+                <div class="countdown-el mins-c countdown-box">
+                    <p class="big-text" id="mins">0</p>
+                    <span>Mins</span>
+                </div>
+                <div class="countdown-el sec-c countdown-box">
+                    <p class="big-text" id="sec">0</p>
+                    <span>Seconds</span>
+                </div>
             </div>
         </div>
-    </div>
-    
-<body>
-  <div class="music-player">
-    <div class="player-info">
-      <img id="cover" src="images/cover1.jpg" alt="Album Cover">
-      <div class="song-details">
-        <h2 id="song-title">Song Title</h2>
-        <h3 id="artist-name">Artist Name</h3>
-      </div>
+
+        <!-- Music Player Section -->
+        <div class="music-player">
+            <div class="player-info">
+                <img id="cover" src="images/cover1.jpg" alt="Album Cover">
+                <div class="song-details">
+                    <h2 id="song-title">Song Title</h2>
+                    <h3 id="artist-name">Artist Name</h3>
+                </div>
+            </div>
+
+            <audio id="audioPlayer" src="songs/song1.mp3"></audio>
+
+            <div class="controls">
+                <button id="prev-btn">Prev</button>
+                <button id="play-btn">Play</button>
+                <button id="next-btn">Next</button>
+            </div>
+
+            <div class="controls">
+                <button id="repeat-btn">Repeat</button>
+                <button id="one-time-play-btn">One Time Play</button>
+            </div>
+
+            <div class="progress-container">
+                <input type="range" id="progress-bar" value="0">
+                <span id="current-time">0:00</span> / 
+                <span id="duration">0:00</span>
+            </div>
+
+            <div class="volume-control">
+                <label for="volume-bar">Volume</label>
+                <input type="range" id="volume-bar" min="0" max="1" step="0.1" value="1">
+            </div>
+
+            <!-- Song List Button -->
+            <button id="song-list-btn">Show Song List</button>
+            <div class="song-list" id="song-list-container" style="display: none;">
+                <h3>Song List</h3>
+                <ul id="song-list"></ul>
+            </div>
+
+            <canvas id="visualizer" width="300" height="100"></canvas>
+
+            <button id="dark-mode-btn">Toggle Dark Mode</button>
+        </div>
     </div>
 
-    <audio id="audioPlayer" src="songs/song1.mp3"></audio>
-    
-    <div class="controls">
-      <button id="prev-btn">Prev</button>
-      <button id="play-btn">Play</button>
-      <button id="next-btn">Next</button>
-    </div>
-
-    <div class="controls">
-      <button id="repeat-btn">Repeat</button>
-      <button id="one-time-play-btn">One Time Play</button>
-    </div>
-    
-    <div class="progress-container">
-      <input type="range" id="progress-bar" value="0">
-      <span id="current-time">0:00</span> / 
-      <span id="duration">0:00</span>
-    </div>
-    
-    <div class="volume-control">
-      <label for="volume-bar">Volume</label>
-      <input type="range" id="volume-bar" min="0" max="1" step="0.1" value="1">
-    </div>
-
-    <!-- Song List Button -->
-    <button id="song-list-btn">Show Song List</button>
-    <div class="song-list" id="song-list-container" style="display: none;">
-      <h3>Song List</h3>
-      <ul id="song-list"></ul>
-    </div>
-
-    <canvas id="visualizer" width="300" height="100"></canvas>
-
-    <button id="dark-mode-btn">Toggle Dark Mode</button>
-  </div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
