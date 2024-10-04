@@ -55,7 +55,9 @@ let currentSongIndex = 0; // To keep track of the current song
 const songs = [
   { title: "Song 1", artist: "Artist 1", cover: "images/cover1.jpg", src: "songs/song1.mp3" },
   { title: "Suzume (Motion Picture Soundtrack)", artist: "Radwimps", cover: "images/cover2.jpg", src: "songs/song2.mp3" },
-  { title: "Song 3", artist: "Artist 3", cover: "images/cover3.jpg", src: "songs/song3.mp3" }
+  { title: "Song 3", artist: "Artist 3", cover: "images/cover3.jpg", src: "songs/song3.mp3" },
+  { title: "Song 4", artist: "Artist 4", cover: "images/cover4.jpg", src: "songs/song4.mp3" },
+  { title: "Song 5", artist: "Artist 5", cover: "images/cover5.jpg", src: "songs/song5.mp3" }
 ];
 
 // Load the first song initially
