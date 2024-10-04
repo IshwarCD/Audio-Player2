@@ -7,431 +7,301 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0; /* Light background for the body */
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column; /* Stack elements vertically */
     height: 100vh;
-    overflow: hidden;
-    transition: background-color 0.5s ease;
+    overflow: hidden; /* Prevent body overflow */
 }
 
 .container {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
     padding: 3rem;
     border-radius: 20px;
-    box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
     text-align: center;
-    max-width: 500px;
-    width: 100%;
-    margin: 0 auto;
-    backdrop-filter: blur(10px);
-    overflow-y: auto;
-    max-height: 80vh;
-    transition: transform 0.5s ease;
-}
-
-.container:hover {
-    transform: scale(1.02);
+    max-width: 500px; /* Limit the width */
+    width: 100%; /* Ensure it adapts to screen size */
+    margin: 0 auto; /* Center the container */
+    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: 80vh; /* Set max height */
 }
 
 h1 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 3rem;
-    font-weight: 600;
-    background: linear-gradient(to right, #ff0080, #ff8c00);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-align: center;
-    margin: 20px 0;
-    letter-spacing: 1.5px;
-    transition: all 0.3s ease;
-}
-
-h1:hover {
-    letter-spacing: 2px;
+    font-family: 'Poppins', sans-serif; /* Use the imported Poppins font */
+    font-size: 3rem; /* Adjust font size */
+    font-weight: 600; /* Use a bold weight for emphasis */
+    background: linear-gradient(to right, #ff0000, #ffffff); /* Red to white gradient */
+    -webkit-background-clip: text; /* Clip background to text */
+    -webkit-text-fill-color: transparent; /* Make text transparent to show gradient */
+    text-align: center; /* Center the title */
+    margin: 20px 0; /* Add margin for spacing */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+    letter-spacing: 1px; /* Increase space between letters */
 }
 
 h2 {
-    font-size: 2.5rem;
-    margin-top: 1rem;
-    color: #fff;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    font-size: 3rem; /* Adjust size for the subheading */
+    margin-top: 1rem; /* Add margin for spacing */
 }
 
 .big-text {
-    font-size: 6rem;
-    line-height: 1;
-    margin: 0;
-    transition: all 0.3s ease;
-    color: #fff;
-    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
-}
-
-.big-text:hover {
-    transform: scale(1.1);
+  font-size: 6rem;
+  line-height: 1;
+  margin: 0;
+  transition: all 0.3s ease;
 }
 
 .countdown-el {
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0.2);
-    padding: 1.5rem 2rem;
-    border-radius: 15px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  min-width: 120px;
+  transition: transform 0.3s ease;
 }
 
 .countdown-el:hover {
-    transform: scale(1.05);
-    background-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
 }
 
 .countdown-el span {
-    font-size: 1.5rem;
-    display: block;
-    margin-top: 0.5rem;
-    color: #fff;
+  font-size: 1.5rem;
+  display: block;
+  margin-top: 0.5rem;
 }
 
 .music-player {
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    width: 100%;
-    max-width: 350px;
-    padding: 20px;
-    text-align: center;
-    margin: 2rem auto;
-    position: relative;
-    overflow: hidden;
-    transition: background-color 0.5s ease, transform 0.5s ease;
-}
-
-.music-player:hover {
-    transform: scale(1.03);
-    background: linear-gradient(to right, #007BFF, #0056b3);
-    color: white;
+  background: #fff; /* Light background for the player */
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Keep the shadow for depth */
+  width: 100%; /* Make sure it's responsive */
+  max-width: 350px; /* Prevent it from getting too large */
+  padding: 20px;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 2rem auto; /* Center the player with auto margins */
+  position: relative; /* Ensure that content remains relative to this container */
+  overflow: hidden; /* Hide any overflow content (like animations spilling out) */
 }
 
 .player-info {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: relative; /* Maintain relative positioning for absolute children */
+  display: flex; /* Use flex to align items */
+  align-items: center; /* Center items vertically */
 }
 
 #cover {
-    width: 70px;
-    height: 70px;
-    border-radius: 15px;
-    margin-right: 15px;
-    transition: transform 0.5s ease;
-}
-
-.player-info:hover #cover {
-    transform: rotate(360deg);
+  width: 70px; /* Set the width of the cover image */
+  height: 70px; /* Set the height of the cover image */
+  border-radius: 10px; /* Round the edges of the image */
+  margin-right: 20px; /* Space between image and text */
+  margin-bottom: -10px; /* Move the cover image up */
 }
 
 .song-details {
-    max-width: 150px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: #333;
+  position: relative; /* Keep song details in normal flow */
+  text-align: center; /* Center the text */
+  color: white; /* Set text color for contrast */
+  z-index: 1; /* Ensure text is above the cover */
+  max-width: 150px; /* Set a max-width for the text area */
+  white-space: nowrap; /* Prevent wrapping */
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Show ellipsis for overflowed text */
+  margin-left: 10px; /* Add margin to the left for spacing */
 }
 
+
 #song-title {
-    font-size: 18px;
-    color: #333;
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  font-size: 16px; /* Adjust font size as needed */
+  color: #333; /* Dark text color for light mode */
 }
 
 #artist-name {
-    font-size: 12px;
-    color: #666;
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  font-size: 10px; /* Adjust font size as needed */
+  color: #333; /* Dark text color for light mode */
 }
 
 .controls {
-    margin-top: 20px;
+  margin-top: 15px; /* Add margin to create space between player and buttons */
 }
 
 button {
-    padding: 12px 18px;
-    margin: 0 8px;
-    border: none;
-    background-color: #007BFF;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0px 4px 12px rgba(0, 123, 255, 0.5);
+  padding: 10px 15px;
+  margin: 0 5px;
+  border: none;
+  background-color: #007BFF; /* Primary button color */
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Button transition */
 }
 
 button:hover {
-    background-color: #0056b3;
-    box-shadow: 0px 6px 15px rgba(0, 123, 255, 0.6);
-    transform: translateY(-3px);
+  background-color: #0056b3; /* Darker shade on hover */
 }
 
 #play-btn.active {
-    background-color: #ff4444;
+  background-color: #ff4444; /* Active play button color */
 }
 
 .progress-container {
-    margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 #progress-bar {
-    -webkit-appearance: none;
-    appearance: none;
-    height: 8px;
-    background: #ddd;
-    border-radius: 5px;
-    transition: all 0.2s ease;
+  -webkit-appearance: none; /* Removes default styling */
+  appearance: none; /* Removes default styling */
+  height: 8px; /* Height of the progress bar */
+  background: #ddd; /* Light background of the progress bar */
+  border-radius: 5px; /* Round edges */
 }
 
 #progress-bar::-webkit-slider-thumb {
-    width: 20px;
-    height: 20px;
-    background: linear-gradient(45deg, #ff4444, #007BFF);
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0px 0px 12px rgba(0, 123, 255, 0.6);
-    transition: transform 0.2s ease;
-}
-
-#progress-bar:hover::-webkit-slider-thumb {
-    transform: scale(1.2);
+  -webkit-appearance: none; /* Removes default thumb styling */
+  appearance: none; /* Removes default thumb styling */
+  width: 16px; /* Width of the thumb */
+  height: 16px; /* Height of the thumb */
+  background: #007BFF; /* Thumb color */
+  border-radius: 50%; /* Round thumb */
+  cursor: pointer; /* Pointer on hover */
 }
 
 .volume-control {
-    margin-top: 20px;
+  margin-top: 15px;
 }
 
 .volume-control label {
-    color: #333;
+  color: #333; /* Ensure volume label is visible in light mode */
 }
 
 #volume-bar {
-    width: 100%;
-    cursor: pointer;
-}
-
-#volume-bar:hover {
-    background: linear-gradient(45deg, #ff4444, #007BFF);
+  width: 100%;
 }
 
 .song-list {
-    margin-top: 15px;
-    text-align: left;
-    display: none;
-    max-height: 200px;
-    overflow-y: auto;
+  margin-top: 15px;
+  text-align: left;
+  display: none; /* Hide by default */
+  max-height: 200px; /* Set a maximum height */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+#song-list {
+  list-style: none;
+  padding-left: 0;
 }
 
 #song-list li {
-    padding: 10px;
-    margin-bottom: 5px;
-    background-color: #f5f5f5;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    cursor: pointer;
+  cursor: pointer;
+  padding: 10px;
+  margin-bottom: 5px;
+  background-color: #f5f5f5; /* Light background for song list items */
+  border-radius: 5px;
+  border: 1px solid transparent; /* Transparent border */
+  transition: border 0.3s; /* Smooth transition */
 }
 
 #song-list li:hover {
-    background-color: #007BFF;
-    color: white;
-    transform: translateX(5px);
+  background-color: #007BFF; /* Highlight color on hover */
+  color: white; /* White text on hover */
+  border: 1px solid #007BFF; /* Border on hover */
 }
 
 #visualizer {
-    margin-top: 15px;
-    display: flex;
-    justify-content: center;
+  margin-top: 15px;
 }
 
-.bar {
-    width: 10px;
-    height: 30px;
-    margin: 0 5px;
-    background-color: #007BFF;
-    animation: bounce 0.5s infinite alternate;
-}
-
-.bar:nth-child(2) {
-    animation-delay: 0.1s;
-}
-
-.bar:nth-child(3) {
-    animation-delay: 0.2s;
-}
-
-@keyframes bounce {
-    from {
-        height: 30px;
-    }
-    to {
-        height: 70px;
-    }
-}
-
-/* Dark Mode Styles */
 .dark-mode {
-    background-color: #1a1a1a;
-    color: #ccc;
+  background-color: #222; /* Dark background for the body */
+  color: #ddd; /* Light text color */
 }
 
 .dark-mode .music-player {
-    background-color: #333;
-    color: white;
-    border: 2px solid #555;
+  background-color: #333; /* Dark background for the player */
+  border: 2px solid #444; /* Add border for distinction */
 }
 
-.dark-mode #song-title, 
+.dark-mode #song-title,
 .dark-mode #artist-name {
-    color: #fff;
+  color: #fff; /* Light text color for dark mode */
+}
+
+.dark-mode #current-time,
+.dark-mode #duration,
+.dark-mode .volume-control label {
+  color: #fff; /* Light text color for various elements */
 }
 
 .dark-mode button {
-    background-color: #444;
-    color: white;
+  background-color: #444; /* Dark button background */
+  color: white; /* Button text color */
 }
 
 .dark-mode #song-list li {
-    background-color: #555;
+  background-color: #555; /* Dark background for song list items */
 }
 
 .dark-mode #song-list li:hover {
-    background-color: #007BFF;
-    color: white;
+  background-color: #007BFF; /* Highlight color on hover */
 }
+
+.player-info {
+  position: relative; /* Allow absolute positioning for children */
+}
+
+#song-list-btn {
+  margin-top: 10px;
+  background-color: #28a745; /* Green background for song list button */
+}
+
+#dark-mode-btn {
+  margin-top: 10px;
+}
+
 
 /* Responsive Styles */
 @media (max-width: 400px) {
-    .music-player {
-        width: 90%;
-    }
+  .music-player {
+    width: 90%; /* Make the player wider on small screens */
+  }
 }
 
 @media (min-width: 401px) and (max-width: 600px) {
-    .music-player {
-        width: 65%;
-    }
+  .music-player {
+    width: 60%; /* Moderate width for medium screens */
+  }
 }
 
 @media screen and (max-width: 800px) {
-    h2 {
-        font-size: 2rem;
-    }
+  h2 {
+    font-size: 2rem;
+  }
 
-    .big-text {
-        font-size: 2.5rem;
-        line-height: 1;
-        margin: 0;
-    }
+  .big-text {
+    font-size: 2.5rem;
+    line-height: 1;
+    margin: 0;
+  }
 
-    .countdown-el {
-        min-width: 80px;
-        padding: 0.5rem 1rem;
-    }
+  .countdown-el {
+    min-width: 80px;
+    padding: 0.5rem 1rem;
+  }
 
-    .countdown-el span {
-        font-size: 1rem;
-    }
-    .container {
-        padding: 1rem;
-    }
+  .countdown-el span {
+    font-size: 1rem;
+  }
+
+  .container {
+    padding: 2rem 1rem; /* Reduce padding on smaller screens */
+  }
 }
-
-/* Extra Small Devices (Phones, up to 576px) */
-@media (max-width: 576px) {
-    h1 {
-        font-size: 2rem; /* Reduce title font size */
-    }
-    
-    h2 {
-        font-size: 1.5rem; /* Reduce subheading font size */
-    }
-
-    .big-text {
-        font-size: 3rem; /* Reduce big text size */
-    }
-
-    .music-player {
-        width: 95%; /* Wider player for small screens */
-        padding: 15px; /* Reduce padding */
-    }
-
-    .countdown-el {
-        min-width: 70px; /* Adjust min-width for countdown */
-    }
-
-    button {
-        padding: 8px 12px; /* Adjust button size */
-    }
-}
-
-/* Small Devices (Tablets, 576px to 768px) */
-@media (min-width: 577px) and (max-width: 768px) {
-    h1 {
-        font-size: 2.5rem; /* Slightly larger title font size */
-    }
-    
-    h2 {
-        font-size: 1.8rem; /* Slightly larger subheading font size */
-    }
-
-    .big-text {
-        font-size: 4rem; /* Increase big text size */
-    }
-
-    .music-player {
-        width: 80%; /* Set player width for tablets */
-    }
-
-    .countdown-el {
-        padding: 1rem 1.5rem; /* Adjust padding for countdown */
-    }
-}
-
-/* Medium Devices (Laptops, 768px to 992px) */
-@media (min-width: 769px) and (max-width: 992px) {
-    h1 {
-        font-size: 3rem; /* Larger title font size */
-    }
-    
-    h2 {
-        font-size: 2rem; /* Larger subheading font size */
-    }
-
-    .big-text {
-        font-size: 5rem; /* Increase big text size */
-    }
-
-    .music-player {
-        width: 70%; /* Moderate width for medium screens */
-    }
-
-    .countdown-el {
-        min-width: 100px; /* Set min-width for countdown */
-    }
-}
-
-/* Large Devices (Desktops, 992px and up) */
-@media (min-width: 993px) {
-    h1 {
-        font-size: 3.5rem; /* Maintain larger title font size */
-    }
-    
-    h2 {
-        font-size: 2.5rem; /* Maintain larger subheading font size */
-    }
-
-    .big-text {
-        font-size: 6rem; /* Maintain larger big text size */
-    }
-
-    .music-player {
-        width: 60%; /* Set player width for desktops */
-    }
-}
-
