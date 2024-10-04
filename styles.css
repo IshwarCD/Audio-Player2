@@ -188,6 +188,8 @@ button:hover {
   margin-top: 15px;
   text-align: left;
   display: none; /* Hide by default */
+  max-height: 200px; /* Set a maximum height */
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 
 #song-list {
