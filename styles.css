@@ -1,3 +1,4 @@
+/* General Resets */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,47 +7,40 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0; /* Light background for the body */
+  background-color: #f0f0f0;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   height: 100vh;
+  padding: 20px;
 }
 
-/* Countdown Styles */
-.countdown-container {
+/* Countdown Timer Styling */
+.countdown {
   display: flex;
   justify-content: center;
-  gap: 2rem;
-  margin-bottom: 2rem; /* Adds spacing between countdown and music player */
+  align-items: center;
+  gap: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 30px; /* Space between countdown and music player */
 }
 
-.big-text {
-  font-size: 2.5rem;
-  line-height: 1;
-  margin: 0;
+.countdown div {
+  background-color: #007BFF;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  min-width: 60px;
   text-align: center;
 }
 
-.countdown-el {
-  background-color: rgba(0, 123, 255, 0.1); /* Light blue background */
-  padding: 1rem;
-  border-radius: 10px;
-  text-align: center;
-}
-
-.countdown-el span {
-  display: block;
-  font-size: 1.2rem;
-  margin-top: 0.5rem;
-}
-
-/* Music Player Styles */
+/* Music Player Styling */
 .music-player {
-  background: #fff; /* Light background for the player in light mode */
+  background: #fff;
   border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Enhanced shadow for depth */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   width: 350px;
   padding: 20px;
   text-align: center;
@@ -71,14 +65,14 @@ body {
 }
 
 #song-title {
-  font-size: 20px; /* Increase title size */
+  font-size: 20px;
   margin-bottom: 5px;
-  color: #333; /* Dark text color */
+  color: #333;
 }
 
 #artist-name {
-  font-size: 16px; /* Slightly larger artist name */
-  color: #666; /* Slightly lighter text for artist name */
+  font-size: 16px;
+  color: #666;
 }
 
 .controls {
@@ -89,19 +83,19 @@ button {
   padding: 10px 15px;
   margin: 0 5px;
   border: none;
-  background-color: #007BFF; /* Primary button color */
+  background-color: #007BFF;
   color: white;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease; /* Button transition */
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: #0056b3; /* Darker shade on hover */
+  background-color: #0056b3;
 }
 
 #play-btn.active {
-  background-color: #ff4444; /* Active play button color */
+  background-color: #ff4444;
 }
 
 .progress-container {
@@ -109,21 +103,21 @@ button:hover {
 }
 
 #progress-bar {
-  -webkit-appearance: none; /* Removes default styling */
-  appearance: none; /* Removes default styling */
-  height: 8px; /* Height of the progress bar */
-  background: #ddd; /* Light background of the progress bar */
-  border-radius: 5px; /* Round edges */
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  background: #ddd;
+  border-radius: 5px;
 }
 
 #progress-bar::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Removes default thumb styling */
-  appearance: none; /* Removes default thumb styling */
-  width: 16px; /* Width of the thumb */
-  height: 16px; /* Height of the thumb */
-  background: #007BFF; /* Thumb color */
-  border-radius: 50%; /* Round thumb */
-  cursor: pointer; /* Pointer on hover */
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #007BFF;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 .volume-control {
@@ -131,7 +125,7 @@ button:hover {
 }
 
 .volume-control label {
-  color: #333; /* Ensure volume label is visible in light mode */
+  color: #333;
 }
 
 #volume-bar {
@@ -141,7 +135,7 @@ button:hover {
 .song-list {
   margin-top: 15px;
   text-align: left;
-  display: none; /* Hide by default */
+  display: none;
 }
 
 #song-list {
@@ -153,16 +147,16 @@ button:hover {
   cursor: pointer;
   padding: 10px;
   margin-bottom: 5px;
-  background-color: #f5f5f5; /* Light background for song list items */
+  background-color: #f5f5f5;
   border-radius: 5px;
-  border: 1px solid transparent; /* Transparent border */
-  transition: border 0.3s; /* Smooth transition */
+  border: 1px solid transparent;
+  transition: border 0.3s;
 }
 
 #song-list li:hover {
-  background-color: #007BFF; /* Highlight color on hover */
-  color: white; /* White text on hover */
-  border: 1px solid #007BFF; /* Border on hover */
+  background-color: #007BFF;
+  color: white;
+  border: 1px solid #007BFF;
 }
 
 #visualizer {
@@ -170,13 +164,13 @@ button:hover {
 }
 
 .dark-mode {
-  background-color: #222; /* Dark background for the body */
-  color: #ddd; /* Light text color */
+  background-color: #222;
+  color: #ddd;
 }
 
 .dark-mode .music-player {
-  background-color: #333; /* Dark background for the player */
-  border: 2px solid #444; /* Add border for distinction */
+  background-color: #333;
+  border: 2px solid #444;
 }
 
 .dark-mode #song-title,
@@ -184,25 +178,25 @@ button:hover {
 .dark-mode #current-time,
 .dark-mode #duration,
 .dark-mode .volume-control label {
-  color: #fff; /* Light text color for various elements */
+  color: #fff;
 }
 
 .dark-mode button {
-  background-color: #444; /* Dark button background */
-  color: white; /* Button text color */
+  background-color: #444;
+  color: white;
 }
 
 .dark-mode #song-list li {
-  background-color: #555; /* Dark background for song list items */
+  background-color: #555;
 }
 
 .dark-mode #song-list li:hover {
-  background-color: #007BFF; /* Highlight color on hover */
+  background-color: #007BFF;
 }
 
 #song-list-btn {
   margin-top: 10px;
-  background-color: #28a745; /* Green background for song list button */
+  background-color: #28a745;
 }
 
 #dark-mode-btn {
@@ -212,12 +206,12 @@ button:hover {
 /* Responsive Styles */
 @media (max-width: 400px) {
   .music-player {
-    width: 90%; /* Make the player wider on small screens */
+    width: 90%;
   }
 }
 
 @media (min-width: 401px) and (max-width: 600px) {
   .music-player {
-    width: 60%; /* Moderate width for medium screens */
+    width: 60%;
   }
 }
