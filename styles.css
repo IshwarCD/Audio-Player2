@@ -7,7 +7,7 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', Arial, sans-serif;
   background-color: #f0f0f0; /* Light background for the body */
   display: flex;
   justify-content: center;
@@ -30,15 +30,15 @@ body {
 }
 
 .countdown-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 2rem;
-    margin-top: 1rem;
-    background-color: rgba(255, 255, 255, 0.1); /* Optional: add background */
-    padding: 1.5rem; /* Optional: add padding */
-    border-radius: 15px; /* Optional: round edges */
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4); /* Shadow for countdown */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 2rem;
+  margin-top: 1rem;
+  background-color: rgba(255, 255, 255, 0.1); /* Optional: add background */
+  padding: 1.5rem; /* Optional: add padding */
+  border-radius: 15px; /* Optional: round edges */
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4); /* Shadow for countdown */
 }
 
 h2 {
@@ -236,10 +236,6 @@ button:hover {
 
 .dark-mode #song-list li:hover {
   background-color: #007BFF; /* Highlight color on hover */
-}
-
-.player-info {
-  position: relative; /* Allow absolute positioning for children */
 }
 
 #song-list-btn {
