@@ -8,11 +8,41 @@ body {
   font-family: Arial, sans-serif;
   background-color: #f0f0f0; /* Light background for the body */
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
 
+/* Countdown Styles */
+.countdown-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem; /* Adds spacing between countdown and music player */
+}
+
+.big-text {
+  font-size: 2.5rem;
+  line-height: 1;
+  margin: 0;
+  text-align: center;
+}
+
+.countdown-el {
+  background-color: rgba(0, 123, 255, 0.1); /* Light blue background */
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.countdown-el span {
+  display: block;
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+/* Music Player Styles */
 .music-player {
   background: #fff; /* Light background for the player in light mode */
   border-radius: 15px;
