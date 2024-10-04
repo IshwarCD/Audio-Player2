@@ -76,14 +76,17 @@ h2 {
 }
 
 .music-player {
-  background: #fff; /* Light background for the player in light mode */
+  background: #fff; /* Light background for the player */
   border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Enhanced shadow for music player */
-  width: 350px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Keep the shadow for depth */
+  width: 100%; /* Make sure it's responsive */
+  max-width: 350px; /* Prevent it from getting too large */
   padding: 20px;
   text-align: center;
   transition: background-color 0.3s ease, color 0.3s ease;
-  margin-top: 2rem; /* Add margin to separate from countdown */
+  margin: 2rem auto; /* Center the player with auto margins */
+  position: relative; /* Ensure that content remains relative to this container */
+  overflow: hidden; /* Hide any overflow content (like animations spilling out) */
 }
 
 .player-info {
@@ -188,6 +191,8 @@ button:hover {
   margin-top: 15px;
   text-align: left;
   display: none; /* Hide by default */
+  max-height: 200px; /* Set a maximum height */
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 
 #song-list {
