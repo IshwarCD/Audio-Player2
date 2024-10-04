@@ -112,11 +112,18 @@ h2 {
   text-overflow: ellipsis; /* Show ellipsis for overflowed text */
 }
 
-#song-title,
-#artist-name {
+#song-title {
   margin: 0; /* Remove default margin */
   padding: 0; /* Remove default padding */
   font-size: 16px; /* Adjust font size as needed */
+  color: #333; /* Dark text color for light mode */
+}
+
+#artist-name {
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  font-size: 10px; /* Adjust font size as needed */
+  color: #333; /* Dark text color for light mode */
 }
 
 .controls {
@@ -218,7 +225,10 @@ button:hover {
 }
 
 .dark-mode #song-title,
-.dark-mode #artist-name,
+.dark-mode #artist-name {
+  color: #fff; /* Light text color for dark mode */
+}
+
 .dark-mode #current-time,
 .dark-mode #duration,
 .dark-mode .volume-control label {
