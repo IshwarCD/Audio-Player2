@@ -76,17 +76,25 @@ h2 {
 }
 
 .music-player {
-  background: #fff; /* Light background for the player */
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Keep the shadow for depth */
-  width: 100%; /* Make sure it's responsive */
-  max-width: 350px; /* Prevent it from getting too large */
-  padding: 20px;
-  text-align: center;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  margin: 2rem auto; /* Center the player with auto margins */
-  position: relative; /* Ensure that content remains relative to this container */
-  overflow: hidden; /* Hide any overflow content (like animations spilling out) */
+  position: relative; /* Parent ko relative rakhna zaroori hai */
+  width: 350px; /* Music player ki width */
+  height: auto; /* Adjust according to content */
+}
+
+.animation-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%; /* Music player ki width ke barabar */
+  height: 4px; /* Height of the red animation line */
+  background: linear-gradient(to right, transparent, red, transparent);
+  animation: animateRed 2s infinite ease-in-out; /* Already existing animation */
+}
+
+@keyframes animateRed {
+  0% { background-position: 0 0; }
+  100% { background-position: 100% 0; }
 }
 
 .player-info {
