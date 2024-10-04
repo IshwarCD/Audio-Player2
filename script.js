@@ -53,9 +53,9 @@ let currentSongIndex = 0; // To keep track of the current song
 
 // Playlist of songs
 const songs = [
-  { title: "This is a very long song title that should not overflow", artist: "Artist 1", cover: "images/cover1.jpg", src: "songs/song1.mp3" },
-  { title: "Another long song title that takes its time to show up", artist: "Artist 2", cover: "images/cover2.jpg", src: "songs/song2.mp3" },
-  { title: "A short title", artist: "Artist 3", cover: "images/cover3.jpg", src: "songs/song3.mp3" }
+  { title: "Song 1", artist: "Artist 1", cover: "images/cover1.jpg", src: "songs/song1.mp3" },
+  { title: "Suzume (Motion Picture Soundtrack)", artist: "Radwimps", cover: "images/cover2.jpg", src: "songs/song2.mp3" },
+  { title: "Song 3", artist: "Artist 3", cover: "images/cover3.jpg", src: "songs/song3.mp3" }
 ];
 
 // Load the first song initially
@@ -78,22 +78,19 @@ function loadSong(song) {
   artistName.innerText = song.artist;
   coverImage.src = song.cover;
   audioPlayer.src = song.src;
-  
-  // Check if the song title is too long
-  if (song.title.length > 30) { // Adjust this length based on your design
-    applySlidingEffect(song.title);
-  } else {
-    songTitle.classList.remove('sliding-title');
-    songTitle.innerText = song.title; // Just display the title if it's short
-  }
 }
 
-function applySlidingEffect(title) {
-  songTitle.classList.add('sliding-title');
-  songTitle.innerText = title;
+function playSong() {
+  audioPlayer.play();
+  playBtn.innerText = "Pause";
+  playBtn.classList.add('active');
 }
 
-// ... (rest of your existing code remains unchanged)
+function pauseSong() {
+  audioPlayer.pause();
+  playBtn.innerText = "Play";
+  playBtn.classList.remove('active');
+}
 
 // Play/Pause Button
 playBtn.addEventListener('click', () => {
