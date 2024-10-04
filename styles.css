@@ -6,22 +6,24 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0; /* Light background for the body */
+    background: linear-gradient(135deg, #a4c8e1 0%, #f0f0f0 100%); /* Stylish background gradient */
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100vh;
     justify-content: center;
+    padding: 20px; /* Add padding to body */
 }
 
 /* Countdown Styles */
 #countdown {
-    background-color: #007BFF; /* Background color for countdown */
+    background-color: rgba(0, 123, 255, 0.8); /* Semi-transparent background for countdown */
     color: white; /* Text color for countdown */
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 15px;
     margin-bottom: 20px;
     text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Shadow for depth */
 }
 
 .countdown-timer {
@@ -30,23 +32,23 @@ body {
 }
 
 .countdown-box {
-    margin: 0 10px;
+    margin: 0 15px; /* Increased margin for spacing */
 }
 
 .countdown-box span {
-    font-size: 24px; /* Font size for time */
+    font-size: 36px; /* Font size for time */
     display: block;
 }
 
 .countdown-box small {
-    font-size: 14px; /* Font size for labels */
+    font-size: 16px; /* Font size for labels */
 }
 
 /* Music Player Styles */
 #music-player {
-    background: #fff; /* Light background for the player */
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent background for the player */
     border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Enhanced shadow for depth */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Shadow for depth */
     width: 350px;
     padding: 20px;
     text-align: center;
@@ -64,6 +66,7 @@ body {
     height: 70px;
     border-radius: 10px;
     margin-right: 15px;
+    border: 2px solid #007BFF; /* Border for cover image */
 }
 
 #song-title {
