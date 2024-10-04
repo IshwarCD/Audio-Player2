@@ -85,9 +85,7 @@ h2 {
 }
 
 .player-info {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
+  position: relative; /* Allow absolute positioning for children */
 }
 
 #cover {
@@ -98,8 +96,15 @@ h2 {
 }
 
 .song-details {
-  text-align: left;
+  position: absolute; /* Position relative to the player-info */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust for element's own size */
+  text-align: center; /* Center text */
+  color: white; /* Set text color for contrast */
+  z-index: 1; /* Ensure it's above the cover */
 }
+
 
 #song-title {
   font-size: 20px; /* Increase title size */
