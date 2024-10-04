@@ -1,28 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap');
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0; /* Light background for the body */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f0f0; /* Light background for the body */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .container {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 3rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
     border-radius: 20px;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
     text-align: center;
     max-width: 500px; /* Limit the width so it doesn't stretch too wide */
-    width: 100%; /* Ensure it adapts to screen size */
+    width: 90%; /* Ensure it adapts to screen size */
     margin: 0 auto; /* Center the container horizontally */
 }
 
@@ -35,12 +35,12 @@ body {
 }
 
 h2 {
-    font-size: 3rem;
-    margin-top: -5rem;
+    font-size: 2.5rem; /* Responsive title size */
+    margin-bottom: 1rem;
 }
 
 .big-text {
-    font-size: 6rem;
+    font-size: 4rem; /* Decreased size for mobile */
     line-height: 1;
     margin: 0;
     transition: all 0.3s ease;
@@ -49,7 +49,7 @@ h2 {
 .countdown-el {
     text-align: center;
     background-color: rgba(255, 255, 255, 0.15);
-    padding: 1rem 2rem;
+    padding: 1rem;
     border-radius: 10px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
     min-width: 120px;
@@ -61,146 +61,145 @@ h2 {
 }
 
 .countdown-el span {
-    font-size: 1.5rem;
+    font-size: 1.2rem; /* Adjusted for better readability */
     display: block;
     margin-top: 0.5rem;
 }
 
-
 .music-player {
-  background: #fff; /* Light background for the player in light mode */
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Enhanced shadow for depth */
-  width: 350px;
-  padding: 20px;
-  text-align: center;
-  transition: background-color 0.3s ease, color 0.3s ease;
+    background: #fff; /* Light background for the player in light mode */
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Enhanced shadow for depth */
+    padding: 20px;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-top: 2rem; /* Space between countdown and player */
 }
 
 .player-info {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 #cover {
-  width: 70px;
-  height: 70px;
-  border-radius: 10px;
-  margin-right: 15px;
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    margin-right: 15px;
 }
 
 .song-details {
-  text-align: left;
+    text-align: left;
 }
 
 #song-title {
-  font-size: 20px; /* Increase title size */
-  margin-bottom: 5px;
-  color: #333; /* Dark text color */
+    font-size: 20px; /* Increase title size */
+    margin-bottom: 5px;
+    color: #333; /* Dark text color */
 }
 
 #artist-name {
-  font-size: 16px; /* Slightly larger artist name */
-  color: #666; /* Slightly lighter text for artist name */
+    font-size: 16px; /* Slightly larger artist name */
+    color: #666; /* Slightly lighter text for artist name */
 }
 
 .controls {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 button {
-  padding: 10px 15px;
-  margin: 0 5px;
-  border: none;
-  background-color: #007BFF; /* Primary button color */
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease; /* Button transition */
+    padding: 10px 15px;
+    margin: 0 5px;
+    border: none;
+    background-color: #007BFF; /* Primary button color */
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Button transition */
 }
 
 button:hover {
-  background-color: #0056b3; /* Darker shade on hover */
+    background-color: #0056b3; /* Darker shade on hover */
 }
 
 #play-btn.active {
-  background-color: #ff4444; /* Active play button color */
+    background-color: #ff4444; /* Active play button color */
 }
 
 .progress-container {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 #progress-bar {
-  -webkit-appearance: none; /* Removes default styling */
-  appearance: none; /* Removes default styling */
-  height: 8px; /* Height of the progress bar */
-  background: #ddd; /* Light background of the progress bar */
-  border-radius: 5px; /* Round edges */
+    -webkit-appearance: none; /* Removes default styling */
+    appearance: none; /* Removes default styling */
+    height: 8px; /* Height of the progress bar */
+    background: #ddd; /* Light background of the progress bar */
+    border-radius: 5px; /* Round edges */
 }
 
 #progress-bar::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Removes default thumb styling */
-  appearance: none; /* Removes default thumb styling */
-  width: 16px; /* Width of the thumb */
-  height: 16px; /* Height of the thumb */
-  background: #007BFF; /* Thumb color */
-  border-radius: 50%; /* Round thumb */
-  cursor: pointer; /* Pointer on hover */
+    -webkit-appearance: none; /* Removes default thumb styling */
+    appearance: none; /* Removes default thumb styling */
+    width: 16px; /* Width of the thumb */
+    height: 16px; /* Height of the thumb */
+    background: #007BFF; /* Thumb color */
+    border-radius: 50%; /* Round thumb */
+    cursor: pointer; /* Pointer on hover */
 }
 
 .volume-control {
-  margin-top: 15px;
+    margin-top: 15px;
 }
 
 .volume-control label {
-  color: #333; /* Ensure volume label is visible in light mode */
+    color: #333; /* Ensure volume label is visible in light mode */
 }
 
 #volume-bar {
-  width: 100%;
+    width: 100%;
 }
 
 .song-list {
-  margin-top: 15px;
-  text-align: left;
-  display: none; /* Hide by default */
+    margin-top: 15px;
+    text-align: left;
+    display: none; /* Hide by default */
 }
 
 #song-list {
-  list-style: none;
-  padding-left: 0;
+    list-style: none;
+    padding-left: 0;
 }
 
 #song-list li {
-  cursor: pointer;
-  padding: 10px;
-  margin-bottom: 5px;
-  background-color: #f5f5f5; /* Light background for song list items */
-  border-radius: 5px;
-  border: 1px solid transparent; /* Transparent border */
-  transition: border 0.3s; /* Smooth transition */
+    cursor: pointer;
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: #f5f5f5; /* Light background for song list items */
+    border-radius: 5px;
+    border: 1px solid transparent; /* Transparent border */
+    transition: border 0.3s; /* Smooth transition */
 }
 
 #song-list li:hover {
-  background-color: #007BFF; /* Highlight color on hover */
-  color: white; /* White text on hover */
-  border: 1px solid #007BFF; /* Border on hover */
+    background-color: #007BFF; /* Highlight color on hover */
+    color: white; /* White text on hover */
+    border: 1px solid #007BFF; /* Border on hover */
 }
 
 #visualizer {
-  margin-top: 15px;
+    margin-top: 15px;
 }
 
 .dark-mode {
-  background-color: #222; /* Dark background for the body */
-  color: #ddd; /* Light text color */
+    background-color: #222; /* Dark background for the body */
+    color: #ddd; /* Light text color */
 }
 
 .dark-mode .music-player {
-  background-color: #333; /* Dark background for the player */
-  border: 2px solid #444; /* Add border for distinction */
+    background-color: #333; /* Dark background for the player */
+    border: 2px solid #444; /* Add border for distinction */
 }
 
 .dark-mode #song-title,
@@ -208,40 +207,74 @@ button:hover {
 .dark-mode #current-time,
 .dark-mode #duration,
 .dark-mode .volume-control label {
-  color: #fff; /* Light text color for various elements */
+    color: #fff; /* Light text color for various elements */
 }
 
 .dark-mode button {
-  background-color: #444; /* Dark button background */
-  color: white; /* Button text color */
+    background-color: #444; /* Dark button background */
+    color: white; /* Button text color */
 }
 
 .dark-mode #song-list li {
-  background-color: #555; /* Dark background for song list items */
+    background-color: #555; /* Dark background for song list items */
 }
 
 .dark-mode #song-list li:hover {
-  background-color: #007BFF; /* Highlight color on hover */
+    background-color: #007BFF; /* Highlight color on hover */
 }
 
 #song-list-btn {
-  margin-top: 10px;
-  background-color: #28a745; /* Green background for song list button */
+    margin-top: 10px;
+    background-color: #28a745; /* Green background for song list button */
 }
 
 #dark-mode-btn {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
 /* Responsive Styles */
 @media (max-width: 400px) {
-  .music-player {
-    width: 90%; /* Make the player wider on small screens */
-  }
+    .music-player {
+        width: 90%; /* Make the player wider on small screens */
+    }
+
+    .big-text {
+        font-size: 3rem; /* Smaller size for mobile */
+    }
+
+    h2 {
+        font-size: 2rem; /* Smaller title size for mobile */
+    }
+
+    .countdown-el {
+        min-width: 80px; /* Reduce min-width for smaller screens */
+    }
 }
 
 @media (min-width: 401px) and (max-width: 600px) {
-  .music-player {
-    width: 60%; /* Moderate width for medium screens */
-  }
+    .music-player {
+        width: 80%; /* Moderate width for medium screens */
+    }
+
+    .big-text {
+        font-size: 5rem; /* Adjust size for medium screens */
+    }
+
+    h2 {
+        font-size: 2.5rem; /* Moderate title size for medium screens */
+    }
+}
+
+@media (min-width: 601px) {
+    .music-player {
+        width: 60%; /* Width for larger screens */
+    }
+
+    .big-text {
+        font-size: 6rem; /* Default size for larger screens */
+    }
+
+    h2 {
+        font-size: 3rem; /* Default title size for larger screens */
+    }
 }
