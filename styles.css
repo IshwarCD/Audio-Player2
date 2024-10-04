@@ -112,7 +112,8 @@ h2 {
   text-overflow: ellipsis; /* Show ellipsis for overflowed text */
 }
 
-/*# song-title,
+/*# song-title,*/
+
 #song-title {
   font-size: 18px;
   margin-bottom: 5px;
