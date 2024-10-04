@@ -53,8 +53,8 @@ let currentSongIndex = 0; // To keep track of the current song
 
 // Playlist of songs
 const songs = [
-  { title: "Song 1", artist: "Artist 1", cover: "images/cover1.jpg", src: "songs/song1.mp3" },
-  { title: "Suzume (Motion Picture Soundtrack)", artist: "Radwimps", cover: "images/cover2.jpg", src: "songs/song2.mp3" },
+  { title: "Sochta Hoon Keh Woh", artist: "Nusrat Fateh Ali Khan", cover: "images/cover1.jpg", src: "songs/song1.mp3" },
+  { title: "Jhalak Dikhla Ja", artist: "Sameer and Himesh Reshammiya", cover: "images/cover2.jpg", src: "songs/song2.mp3" },
   { title: "Woofer (S&R)", artist: "Dr. Zeus", cover: "images/cover3.jpg", src: "songs/song3.mp3" },
   { title: "Chammak Challo", artist: "Akon and Hamsika Iyer", cover: "images/cover4.jpg", src: "songs/song4.mp3" },
   { title: "Song 5", artist: "Artist 5", cover: "images/cover5.jpg", src: "songs/song5.mp3" }
