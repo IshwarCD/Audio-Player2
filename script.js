@@ -54,7 +54,7 @@ let currentSongIndex = 0; // To keep track of the current song
 // Playlist of songs
 const songs = [
   { title: "Song 1", artist: "Artist 1", cover: "images/cover1.jpg", src: "songs/song1.mp3" },
-  { title: "Song 2", artist: "Artist 2", cover: "images/cover2.jpg", src: "songs/song2.mp3" },
+  { title: "Suzume (Motion Picture Soundtrack)", artist: "Radwimps", cover: "images/cover2.jpg", src: "songs/song2.mp3" },
   { title: "Song 3", artist: "Artist 3", cover: "images/cover3.jpg", src: "songs/song3.mp3" }
 ];
 
