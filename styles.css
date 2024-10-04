@@ -1,49 +1,51 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap');
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0; /* Light background for the body */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  overflow: hidden; /* Prevent body overflow */
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0; /* Light background for the body */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Stack elements vertically */
+    height: 100vh;
+    overflow: hidden; /* Prevent body overflow */
 }
 
 .container {
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 3rem;
-  border-radius: 20px;
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
-  text-align: center;
-  max-width: 500px; /* Limit the width so it doesn't stretch too wide */
-  width: 100%; /* Ensure it adapts to screen size */
-  margin: 0 auto; /* Center the container horizontally */
-  overflow-y: auto; /* Enable vertical scrolling */
-  max-height: 80vh; /* Set max height to allow for scrolling */
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    max-width: 500px; /* Limit the width */
+    width: 100%; /* Ensure it adapts to screen size */
+    margin: 0 auto; /* Center the container */
+    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: 80vh; /* Set max height */
 }
 
-.countdown-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 2rem;
-    margin-top: 1rem;
-    background-color: rgba(255, 255, 255, 0.1); /* Optional: add background */
-    padding: 1.5rem; /* Optional: add padding */
-    border-radius: 15px; /* Optional: round edges */
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4); /* Shadow for countdown */
+h1 {
+    font-family: 'Poppins', sans-serif; /* Use the imported Poppins font */
+    font-size: 3rem; /* Adjust font size */
+    font-weight: 600; /* Use a bold weight for emphasis */
+    background: linear-gradient(to right, #ff0000, #ffffff); /* Red to white gradient */
+    -webkit-background-clip: text; /* Clip background to text */
+    -webkit-text-fill-color: transparent; /* Make text transparent to show gradient */
+    text-align: center; /* Center the title */
+    margin: 20px 0; /* Add margin for spacing */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+    letter-spacing: 1px; /* Increase space between letters */
 }
 
 h2 {
-  font-size: 3rem;
-  margin-top: -5rem;
+    font-size: 3rem; /* Adjust size for the subheading */
+    margin-top: 1rem; /* Add margin for spacing */
 }
 
 .big-text {
