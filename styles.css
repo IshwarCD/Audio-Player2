@@ -7,47 +7,57 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     height: 100vh;
     overflow: hidden;
-    transition: background-color 0.5s ease, color 0.5s ease;
+    transition: background-color 0.5s ease;
 }
 
 .container {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.2);
     padding: 3rem;
     border-radius: 20px;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.4);
     text-align: center;
     max-width: 500px;
     width: 100%;
     margin: 0 auto;
+    backdrop-filter: blur(10px);
     overflow-y: auto;
     max-height: 80vh;
-    transition: background-color 0.5s ease, color 0.5s ease;
+    transition: transform 0.5s ease;
+}
+
+.container:hover {
+    transform: scale(1.02);
 }
 
 h1 {
     font-family: 'Poppins', sans-serif;
     font-size: 3rem;
     font-weight: 600;
-    background: linear-gradient(to right, #ff0000, #ffffff);
+    background: linear-gradient(to right, #ff0080, #ff8c00);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-align: center;
     margin: 20px 0;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
+    transition: all 0.3s ease;
+}
+
+h1:hover {
+    letter-spacing: 2px;
 }
 
 h2 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     margin-top: 1rem;
+    color: #fff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .big-text {
@@ -55,32 +65,39 @@ h2 {
     line-height: 1;
     margin: 0;
     transition: all 0.3s ease;
+    color: #fff;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+.big-text:hover {
+    transform: scale(1.1);
 }
 
 .countdown-el {
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.15);
-    padding: 1rem 2rem;
-    border-radius: 10px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-    min-width: 120px;
-    transition: transform 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 1.5rem 2rem;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
 }
 
 .countdown-el:hover {
     transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 .countdown-el span {
     font-size: 1.5rem;
     display: block;
     margin-top: 0.5rem;
+    color: #fff;
 }
 
 .music-player {
     background: #fff;
     border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     width: 100%;
     max-width: 350px;
     padding: 20px;
@@ -88,93 +105,71 @@ h2 {
     margin: 2rem auto;
     position: relative;
     overflow: hidden;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.5s ease, transform 0.5s ease;
+}
+
+.music-player:hover {
+    transform: scale(1.03);
+    background: linear-gradient(to right, #007BFF, #0056b3);
+    color: white;
 }
 
 .player-info {
-    position: relative;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 #cover {
     width: 70px;
     height: 70px;
-    border-radius: 10px;
-    margin-right: 20px;
-    margin-bottom: -10px;
+    border-radius: 15px;
+    margin-right: 15px;
+    transition: transform 0.5s ease;
+}
+
+.player-info:hover #cover {
+    transform: rotate(360deg);
 }
 
 .song-details {
-    position: relative;
-    text-align: center;
-    color: white;
-    z-index: 1;
     max-width: 150px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-left: 10px;
+    color: #333;
 }
 
 #song-title {
-    margin: 0;
-    padding: 0;
-    font-size: 16px;
+    font-size: 18px;
     color: #333;
 }
 
 #artist-name {
-    margin: 0;
-    padding: 0;
-    font-size: 10px;
-    color: #333;
+    font-size: 12px;
+    color: #666;
 }
 
 .controls {
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 button {
-    padding: 10px 15px;
-    margin: 0 5px;
+    padding: 12px 18px;
+    margin: 0 8px;
     border: none;
     background-color: #007BFF;
     color: white;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 12px rgba(0, 123, 255, 0.5);
 }
 
 button:hover {
     background-color: #0056b3;
-    box-shadow: 0px 4px 15px rgba(0, 123, 255, 0.5);
-    transform: scale(1.05);
-}
-
-button:active {
-    transform: scale(0.95);
-}
-
-button:hover::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #333;
-    color: white;
-    padding: 5px;
-    border-radius: 3px;
-    white-space: nowrap;
-    font-size: 12px;
-    opacity: 1;
-    pointer-events: none;
-}
-
-button::after {
-    opacity: 0;
-    transition: opacity 0.3s;
+    box-shadow: 0px 6px 15px rgba(0, 123, 255, 0.6);
+    transform: translateY(-3px);
 }
 
 #play-btn.active {
@@ -182,7 +177,7 @@ button::after {
 }
 
 .progress-container {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 #progress-bar {
@@ -191,27 +186,25 @@ button::after {
     height: 8px;
     background: #ddd;
     border-radius: 5px;
-}
-
-#progress-bar::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 16px;
-    height: 16px;
-    background: linear-gradient(45deg, #ff4444, #007BFF);
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0px 0px 10px rgba(0, 123, 255, 0.5);
     transition: all 0.2s ease;
 }
 
-#progress-bar:hover::-webkit-slider-thumb {
+#progress-bar::-webkit-slider-thumb {
     width: 20px;
     height: 20px;
+    background: linear-gradient(45deg, #ff4444, #007BFF);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0px 0px 12px rgba(0, 123, 255, 0.6);
+    transition: transform 0.2s ease;
+}
+
+#progress-bar:hover::-webkit-slider-thumb {
+    transform: scale(1.2);
 }
 
 .volume-control {
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 .volume-control label {
@@ -220,6 +213,11 @@ button::after {
 
 #volume-bar {
     width: 100%;
+    cursor: pointer;
+}
+
+#volume-bar:hover {
+    background: linear-gradient(45deg, #ff4444, #007BFF);
 }
 
 .song-list {
@@ -230,38 +228,31 @@ button::after {
     overflow-y: auto;
 }
 
-#song-list {
-    list-style: none;
-    padding-left: 0;
-}
-
 #song-list li {
-    cursor: pointer;
     padding: 10px;
     margin-bottom: 5px;
     background-color: #f5f5f5;
     border-radius: 5px;
-    border: 1px solid transparent;
-    transition: border 0.3s;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
 }
 
 #song-list li:hover {
     background-color: #007BFF;
     color: white;
-    border: 1px solid #007BFF;
+    transform: translateX(5px);
 }
 
 #visualizer {
     margin-top: 15px;
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 .bar {
     width: 10px;
     height: 30px;
-    margin: 0 3px;
+    margin: 0 5px;
     background-color: #007BFF;
     animation: bounce 0.5s infinite alternate;
 }
@@ -274,37 +265,29 @@ button::after {
     animation-delay: 0.2s;
 }
 
-.bar:nth-child(4) {
-    animation-delay: 0.3s;
-}
-
 @keyframes bounce {
     from {
         height: 30px;
     }
     to {
-        height: 60px;
+        height: 70px;
     }
 }
 
+/* Dark Mode Styles */
 .dark-mode {
-    background-color: #222;
-    color: #ddd;
+    background-color: #1a1a1a;
+    color: #ccc;
 }
 
 .dark-mode .music-player {
     background-color: #333;
-    border: 2px solid #444;
+    color: white;
+    border: 2px solid #555;
 }
 
-.dark-mode #song-title,
+.dark-mode #song-title, 
 .dark-mode #artist-name {
-    color: #fff;
-}
-
-.dark-mode #current-time,
-.dark-mode #duration,
-.dark-mode .volume-control label {
     color: #fff;
 }
 
@@ -319,19 +302,7 @@ button::after {
 
 .dark-mode #song-list li:hover {
     background-color: #007BFF;
-}
-
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: #007BFF;
-    border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background-color: #0056b3;
+    color: white;
 }
 
 /* Responsive Styles */
@@ -343,7 +314,7 @@ button::after {
 
 @media (min-width: 401px) and (max-width: 600px) {
     .music-player {
-        width: 60%;
+        width: 65%;
     }
 }
 
@@ -366,8 +337,101 @@ button::after {
     .countdown-el span {
         font-size: 1rem;
     }
-
     .container {
         padding: 1rem;
     }
 }
+
+/* Extra Small Devices (Phones, up to 576px) */
+@media (max-width: 576px) {
+    h1 {
+        font-size: 2rem; /* Reduce title font size */
+    }
+    
+    h2 {
+        font-size: 1.5rem; /* Reduce subheading font size */
+    }
+
+    .big-text {
+        font-size: 3rem; /* Reduce big text size */
+    }
+
+    .music-player {
+        width: 95%; /* Wider player for small screens */
+        padding: 15px; /* Reduce padding */
+    }
+
+    .countdown-el {
+        min-width: 70px; /* Adjust min-width for countdown */
+    }
+
+    button {
+        padding: 8px 12px; /* Adjust button size */
+    }
+}
+
+/* Small Devices (Tablets, 576px to 768px) */
+@media (min-width: 577px) and (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem; /* Slightly larger title font size */
+    }
+    
+    h2 {
+        font-size: 1.8rem; /* Slightly larger subheading font size */
+    }
+
+    .big-text {
+        font-size: 4rem; /* Increase big text size */
+    }
+
+    .music-player {
+        width: 80%; /* Set player width for tablets */
+    }
+
+    .countdown-el {
+        padding: 1rem 1.5rem; /* Adjust padding for countdown */
+    }
+}
+
+/* Medium Devices (Laptops, 768px to 992px) */
+@media (min-width: 769px) and (max-width: 992px) {
+    h1 {
+        font-size: 3rem; /* Larger title font size */
+    }
+    
+    h2 {
+        font-size: 2rem; /* Larger subheading font size */
+    }
+
+    .big-text {
+        font-size: 5rem; /* Increase big text size */
+    }
+
+    .music-player {
+        width: 70%; /* Moderate width for medium screens */
+    }
+
+    .countdown-el {
+        min-width: 100px; /* Set min-width for countdown */
+    }
+}
+
+/* Large Devices (Desktops, 992px and up) */
+@media (min-width: 993px) {
+    h1 {
+        font-size: 3.5rem; /* Maintain larger title font size */
+    }
+    
+    h2 {
+        font-size: 2.5rem; /* Maintain larger subheading font size */
+    }
+
+    .big-text {
+        font-size: 6rem; /* Maintain larger big text size */
+    }
+
+    .music-player {
+        width: 60%; /* Set player width for desktops */
+    }
+}
+
