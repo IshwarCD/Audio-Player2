@@ -85,14 +85,16 @@ h2 {
 }
 
 .player-info {
-  position: relative; /* Allow absolute positioning for children */
+  position: relative; /* Set the parent to relative for absolute positioning of children */
+  display: flex; /* Use flex to align items */
+  align-items: center; /* Center items vertically */
 }
 
 #cover {
-  width: 70px;
-  height: 70px;
-  border-radius: 10px;
-  margin-right: 15px;
+  width: 70px; /* Set the width of the cover image */
+  height: 70px; /* Set the height of the cover image */
+  border-radius: 10px; /* Round the edges of the image */
+  margin-right: 15px; /* Space between the image and text */
 }
 
 .song-details {
@@ -100,21 +102,16 @@ h2 {
   top: 50%; /* Center vertically */
   left: 50%; /* Center horizontally */
   transform: translate(-50%, -50%); /* Adjust for element's own size */
-  text-align: center; /* Center text */
+  text-align: center; /* Center the text */
   color: white; /* Set text color for contrast */
-  z-index: 1; /* Ensure it's above the cover */
+  z-index: 1; /* Ensure text is above the cover */
+  pointer-events: none; /* Prevent pointer events on the text */
 }
 
-
-#song-title {
-  font-size: 20px; /* Increase title size */
-  margin-bottom: 5px;
-  color: #333; /* Dark text color */
-}
-
+#song-title,
 #artist-name {
-  font-size: 16px; /* Slightly larger artist name */
-  color: #666; /* Slightly lighter text for artist name */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
 }
 
 .controls {
