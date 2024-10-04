@@ -57,7 +57,12 @@ const songs = [
   { title: "Jhalak Dikhla Ja", artist: "Sameer and Himesh Reshammiya", cover: "images/cover2.jpg", src: "songs/song2.mp3" },
   { title: "Woofer (S&R)", artist: "Dr. Zeus", cover: "images/cover3.jpg", src: "songs/song3.mp3" },
   { title: "Chammak Challo", artist: "Akon and Hamsika Iyer", cover: "images/cover4.jpg", src: "songs/song4.mp3" },
-  { title: "Chinta Ta Ta Chita Chita", artist: "Mika Singh, Wajid Ali, and Sajid Khan", cover: "images/cover5.jpg", src: "songs/song5.mp3" }
+  { title: "Chinta Ta Ta Chita Chita", artist: "Mika Singh, Wajid Ali, and Sajid Khan", cover: "images/cover5.jpg", src: "songs/song5.mp3" },
+  { title: "Mere Rashke Qamar", artist: "Nusrat Fateh Ali Khan", cover: "images/cover6.jpg", src: "songs/song6.mp3" },
+  { title: "Aaja We Mahiya", artist: "imran khan", cover: "images/cover7.jpg", src: "songs/song7.mp3" },
+  { title: "DJ Wale Babu", artist: "Aastha Gill, Neelesh P, and Badshah", cover: "images/cover8.jpg", src: "songs/song8.mp3" },
+  { title: "Desi Desi Na Bolya Kar", artist: "Raju Punjabi", cover: "images/cover9.jpg", src: "songs/song9.mp3" },
+  { title: "Daru Badnaam", artist: "Param Singh, Kamal Kahlon", cover: "images/cover10.jpg", src: "songs/song10.mp3" }
 ];
 
 // Load the first song initially
