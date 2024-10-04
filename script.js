@@ -1,3 +1,36 @@
+// Countdown Timer Logic
+const daysEl = document.getElementById("days");
+const hoursEl = document.getElementById("hours");
+const minsEl = document.getElementById("mins");
+const secEl = document.getElementById("sec");
+
+const newYear = '01 Jan 2025';
+
+function countdown() {
+  const newYearDate = new Date(newYear);
+  const currentDate = new Date();
+
+  const totalSeconds = (newYearDate - currentDate) / 1000;
+
+  const days = Math.floor(totalSeconds / 3600 / 24);
+  const hours = Math.floor(totalSeconds / 3600) % 24;
+  const mins = Math.floor(totalSeconds / 60) % 60;
+  const seconds = Math.floor(totalSeconds) % 60;
+
+  daysEl.innerHTML = days;
+  hoursEl.innerHTML = formatTime(hours);
+  minsEl.innerHTML = formatTime(mins);
+  secEl.innerHTML = formatTime(seconds);
+}
+
+function formatTime(time) {
+  return time < 10 ? `0${time}` : time;
+}
+
+countdown();
+setInterval(countdown, 1000);
+
+// Music Player Logic
 const audioPlayer = document.getElementById('audioPlayer');
 const playBtn = document.getElementById('play-btn');
 const prevBtn = document.getElementById('prev-btn');
@@ -16,9 +49,9 @@ const canvas = document.getElementById('visualizer');
 const canvasCtx = canvas.getContext('2d');
 const songListBtn = document.getElementById('song-list-btn');
 
-let isRepeating = false; // For repeat mode
-let isOneTimePlay = false; // For one-time play mode
-let currentSongIndex = 0; // To keep track of the current song
+let isRepeating = false;
+let isOneTimePlay = false;
+let currentSongIndex = 0;
 
 // Playlist of songs
 const songs = [
@@ -169,7 +202,7 @@ function setupRepeatButton() {
   repeatBtn.addEventListener('click', () => {
     isRepeating = !isRepeating;
     repeatBtn.classList.toggle('active', isRepeating);
-    repeatBtn.innerText = isRepeating ? "Repeat: On" : "Repeat: Off"; // Update button text
+    repeatBtn.innerText = isRepeating ? "Repeat: On" : "Repeat: Off";
   });
 }
 
@@ -179,7 +212,7 @@ function setupOneTimePlayButton() {
   oneTimePlayBtn.addEventListener('click', () => {
     isOneTimePlay = !isOneTimePlay;
     oneTimePlayBtn.classList.toggle('active', isOneTimePlay);
-    oneTimePlayBtn.innerText = isOneTimePlay ? "One Time Play: On" : "One Time Play: Off"; // Update button text
+    oneTimePlayBtn.innerText = isOneTimePlay ? "One Time Play: On" : "One Time Play: Off";
   });
 }
 
