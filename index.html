@@ -1,66 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Advanced Music Player with Countdown</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer & Music Player</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
-  <!-- Countdown Timer Section -->
-  <div class="countdown">
-    <div id="days">00</div>Days 
-    <div id="hours">00</div>Hours 
-    <div id="mins">00</div>Minutes 
-    <div id="sec">00</div>Seconds 
-  </div>
 
-  <!-- Music Player Section -->
-  <div class="music-player">
-    <div class="player-info">
-      <img id="cover" src="images/cover1.jpg" alt="Album Cover">
-      <div class="song-details">
-        <h2 id="song-title">Song Title</h2>
-        <h3 id="artist-name">Artist Name</h3>
-      </div>
+    <div id="countdown">
+        <h1>Countdown to New Year 2025</h1>
+        <div class="countdown-timer">
+            <div class="countdown-box">
+                <span id="days">00</span>
+                <small>Days</small>
+            </div>
+            <div class="countdown-box">
+                <span id="hours">00</span>
+                <small>Hours</small>
+            </div>
+            <div class="countdown-box">
+                <span id="mins">00</span>
+                <small>Minutes</small>
+            </div>
+            <div class="countdown-box">
+                <span id="sec">00</span>
+                <small>Seconds</small>
+            </div>
+        </div>
     </div>
 
-    <audio id="audioPlayer" src="songs/song1.mp3"></audio>
+    <div id="music-player">
+        <div id="song-info">
+            <img id="cover" src="images/cover1.jpg" alt="Album Cover">
+            <div id="song-title">Song Title</div>
+            <div id="artist-name">Artist Name</div>
+        </div>
 
-    <div class="controls">
-      <button id="prev-btn">Prev</button>
-      <button id="play-btn">Play</button>
-      <button id="next-btn">Next</button>
+        <div id="controls">
+            <button id="prev-btn">Previous</button>
+            <button id="play-btn">Play</button>
+            <button id="next-btn">Next</button>
+        </div>
+
+        <input type="range" id="progress-bar" value="0">
+        <div>
+            <span id="current-time">0:00</span> / <span id="duration">0:00</span>
+        </div>
+
+        <input type="range" id="volume-bar" value="1" min="0" max="1" step="0.01">
+
+        <canvas id="visualizer"></canvas>
+
+        <div id="song-list-container">
+            <ul id="song-list"></ul>
+        </div>
     </div>
 
-    <div class="controls">
-      <button id="repeat-btn">Repeat</button>
-      <button id="one-time-play-btn">One Time Play</button>
-    </div>
+    <!-- Add your audio files here -->
+    <audio id="audioPlayer"></audio>
 
-    <div class="progress-container">
-      <input type="range" id="progress-bar" value="0">
-      <span id="current-time">0:00</span> / 
-      <span id="duration">0:00</span>
-    </div>
-
-    <div class="volume-control">
-      <label for="volume-bar">Volume</label>
-      <input type="range" id="volume-bar" min="0" max="1" step="0.1" value="1">
-    </div>
-
-    <!-- Song List Button -->
-    <button id="song-list-btn">Show Song List</button>
-    <div class="song-list" id="song-list-container" style="display: none;">
-      <h3>Song List</h3>
-      <ul id="song-list"></ul>
-    </div>
-
-    <canvas id="visualizer" width="300" height="100"></canvas>
-
-    <button id="dark-mode-btn">Toggle Dark Mode</button>
-  </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
