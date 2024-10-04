@@ -1,217 +1,192 @@
-/* General Resets */
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100vh;
-  padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0; /* Light background for the body */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
 }
 
-/* Countdown Timer Styling */
-.countdown {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 30px; /* Space between countdown and music player */
+/* Countdown Styles */
+#countdown {
+    background-color: #007BFF; /* Background color for countdown */
+    color: white; /* Text color for countdown */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
-.countdown div {
-  background-color: #007BFF;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 8px;
-  min-width: 60px;
-  text-align: center;
+.countdown-timer {
+    display: flex;
+    justify-content: center;
 }
 
-/* Music Player Styling */
-.music-player {
-  background: #fff;
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  width: 350px;
-  padding: 20px;
-  text-align: center;
-  transition: background-color 0.3s ease, color 0.3s ease;
+.countdown-box {
+    margin: 0 10px;
 }
 
-.player-info {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
+.countdown-box span {
+    font-size: 24px; /* Font size for time */
+    display: block;
+}
+
+.countdown-box small {
+    font-size: 14px; /* Font size for labels */
+}
+
+/* Music Player Styles */
+#music-player {
+    background: #fff; /* Light background for the player */
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Enhanced shadow for depth */
+    width: 350px;
+    padding: 20px;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#song-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 #cover {
-  width: 70px;
-  height: 70px;
-  border-radius: 10px;
-  margin-right: 15px;
-}
-
-.song-details {
-  text-align: left;
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    margin-right: 15px;
 }
 
 #song-title {
-  font-size: 20px;
-  margin-bottom: 5px;
-  color: #333;
+    font-size: 20px; /* Increase title size */
+    margin-bottom: 5px;
+    color: #333; /* Dark text color */
 }
 
 #artist-name {
-  font-size: 16px;
-  color: #666;
+    font-size: 16px; /* Slightly larger artist name */
+    color: #666; /* Slightly lighter text for artist name */
 }
 
-.controls {
-  margin-bottom: 15px;
+#controls {
+    margin-bottom: 15px;
 }
 
 button {
-  padding: 10px 15px;
-  margin: 0 5px;
-  border: none;
-  background-color: #007BFF;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    padding: 10px 15px;
+    margin: 0 5px;
+    border: none;
+    background-color: #007BFF; /* Primary button color */
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Button transition */
 }
 
 button:hover {
-  background-color: #0056b3;
+    background-color: #0056b3; /* Darker shade on hover */
 }
 
 #play-btn.active {
-  background-color: #ff4444;
-}
-
-.progress-container {
-  margin-bottom: 10px;
+    background-color: #ff4444; /* Active play button color */
 }
 
 #progress-bar {
-  -webkit-appearance: none;
-  appearance: none;
-  height: 8px;
-  background: #ddd;
-  border-radius: 5px;
+    width: 100%;
+    margin: 10px 0;
 }
 
 #progress-bar::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 16px;
-  height: 16px;
-  background: #007BFF;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.volume-control {
-  margin-top: 15px;
-}
-
-.volume-control label {
-  color: #333;
+    -webkit-appearance: none; /* Removes default thumb styling */
+    appearance: none; /* Removes default thumb styling */
+    width: 16px; /* Width of the thumb */
+    height: 16px; /* Height of the thumb */
+    background: #007BFF; /* Thumb color */
+    border-radius: 50%; /* Round thumb */
+    cursor: pointer; /* Pointer on hover */
 }
 
 #volume-bar {
-  width: 100%;
-}
-
-.song-list {
-  margin-top: 15px;
-  text-align: left;
-  display: none;
-}
-
-#song-list {
-  list-style: none;
-  padding-left: 0;
-}
-
-#song-list li {
-  cursor: pointer;
-  padding: 10px;
-  margin-bottom: 5px;
-  background-color: #f5f5f5;
-  border-radius: 5px;
-  border: 1px solid transparent;
-  transition: border 0.3s;
-}
-
-#song-list li:hover {
-  background-color: #007BFF;
-  color: white;
-  border: 1px solid #007BFF;
+    width: 100%;
 }
 
 #visualizer {
-  margin-top: 15px;
+    margin-top: 15px;
+    width: 100%; /* Make the canvas responsive */
+}
+
+/* Song List Styles */
+#song-list-container {
+    display: none; /* Hide by default */
+    text-align: left;
+    margin-top: 15px;
+}
+
+#song-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+#song-list li {
+    cursor: pointer;
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: #f5f5f5; /* Light background for song list items */
+    border-radius: 5px;
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+#song-list li:hover {
+    background-color: #007BFF; /* Highlight color on hover */
+    color: white; /* White text on hover */
 }
 
 .dark-mode {
-  background-color: #222;
-  color: #ddd;
+    background-color: #222; /* Dark background for the body */
+    color: #ddd; /* Light text color */
 }
 
-.dark-mode .music-player {
-  background-color: #333;
-  border: 2px solid #444;
+.dark-mode #music-player {
+    background-color: #333; /* Dark background for the player */
 }
 
 .dark-mode #song-title,
 .dark-mode #artist-name,
 .dark-mode #current-time,
-.dark-mode #duration,
-.dark-mode .volume-control label {
-  color: #fff;
+.dark-mode #duration {
+    color: #fff; /* Light text color for various elements */
 }
 
 .dark-mode button {
-  background-color: #444;
-  color: white;
+    background-color: #444; /* Dark button background */
 }
 
 .dark-mode #song-list li {
-  background-color: #555;
+    background-color: #555; /* Dark background for song list items */
 }
 
 .dark-mode #song-list li:hover {
-  background-color: #007BFF;
-}
-
-#song-list-btn {
-  margin-top: 10px;
-  background-color: #28a745;
-}
-
-#dark-mode-btn {
-  margin-top: 10px;
+    background-color: #007BFF; /* Highlight color on hover */
 }
 
 /* Responsive Styles */
 @media (max-width: 400px) {
-  .music-player {
-    width: 90%;
-  }
+    #music-player {
+        width: 90%; /* Make the player wider on small screens */
+    }
 }
 
 @media (min-width: 401px) and (max-width: 600px) {
-  .music-player {
-    width: 60%;
-  }
+    #music-player {
+        width: 60%; /* Moderate width for medium screens */
+    }
 }
